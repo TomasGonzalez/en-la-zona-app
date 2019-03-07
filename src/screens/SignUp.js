@@ -68,14 +68,17 @@ const LoginButtonText = styled.p`
   color: white;
 `;
 
-export default class Login extends Component {
+export default class SignUp extends Component {
   render () {
     return (
       <MainContainer>
-        <h1>En La Zona </h1>
         <Logo src={logo}/>
         <FormContainer>
           <InputField>
+            <p style={{color: "#9D9D9D"}}>Name</p> 
+            <Input type="text" name="fname"/>
+          </InputField>
+          <InputField class="inputField">
             <p style={{color: "#9D9D9D"}}>Email</p> 
             <Input type="text" name="fname"/>
           </InputField>
@@ -83,11 +86,12 @@ export default class Login extends Component {
             <p style={{color: "#9D9D9D"}}>Password</p> 
             <Input type="text" name="fname"/>
           </InputField>
-          <GoogleLogo>
-            <GoogleLogoText>G+</GoogleLogoText>
-          </GoogleLogo>
+          <InputField class="inputField">
+            <p style={{color: "#9D9D9D"}}>Repete password</p> 
+            <Input type="text" name="fname"/>
+          </InputField>
           <LoginButton>
-            <LoginButtonText>LOG IN</LoginButtonText>
+            <LoginButtonText>Sugn Up</LoginButtonText>
           </LoginButton>
         </FormContainer>
       </MainContainer>
