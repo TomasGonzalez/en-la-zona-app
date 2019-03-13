@@ -90,12 +90,15 @@ const SubTitle = styled.div`
 const Footer = styled.div`
   display: flex;
   justify-content: space-around;
-  position: fixed;
   background-color: white;
   height: 60px;
   width: 80%;
   border-radius: 15px;
   box-shadow: 0px 4px 5px #EEEEEE;
+
+  position:fixed;
+  bottom: 10px;
+  z-index: 1000;
 `;
 
 export default class PuntosDeInteres extends Component {
