@@ -7,9 +7,9 @@ import PuntosDeInteres from '../screens/PuntosDeInteres';
 const MainRouter = () => (
   <Router>
     <div>
-      <Route exact path="/" component={Login}/>
+      <Route exact path="/Login/" component={Login}/>
       <Route exact path="/SignUp/" component={SignUp}/>
-      <Route exact path="/PuntosDeInteres/" component={PuntosDeInteres}/>
+      <Route exact path="/" component={PuntosDeInteres}/>
     </div>
   </Router>
 )

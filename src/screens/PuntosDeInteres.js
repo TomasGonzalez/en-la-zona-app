@@ -1,15 +1,6 @@
 import React,{Component} from 'react';
 import styled from 'styled-components';
-
-const MainContainer = styled.div`
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #FCFCFD;
-
-`;
+import { PageHeader } from 'antd';
 
 const data = [
   {
@@ -18,7 +9,7 @@ const data = [
     ubicacion: "calle 13"
   },
   {
-    image: "https://cdn.vox-cdn.com/thumbor/ourd2JzaI8FvVUAeHyMeZmOVUPQ=/0x0:2000x1335/2070x1164/filters:focal(840x508:1160x828):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/61623387/2018_09_28_GoldLineBar_003.0.jpg",
+    image: "https://www.maisondelaradio.fr/sites/default/files/styles/full_width_932/public/assets/images/photo1_0.jpg?itok=b4ea5-vu",
     title: "Pois",
     ubicacion: "calle 13"
   },
@@ -28,7 +19,7 @@ const data = [
     ubicacion: "calle 13"
   },
   {
-    image: "https://cdn.vox-cdn.com/thumbor/ourd2JzaI8FvVUAeHyMeZmOVUPQ=/0x0:2000x1335/2070x1164/filters:focal(840x508:1160x828):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/61623387/2018_09_28_GoldLineBar_003.0.jpg",
+    image: "https://www.maisondelaradio.fr/sites/default/files/styles/full_width_932/public/assets/images/photo1_0.jpg?itok=b4ea5-vu",
     title: "Pois",
     ubicacion: "calle 13"
   },
@@ -38,34 +29,126 @@ const data = [
     ubicacion: "calle 13"
   },
   {
-    image: "https://cdn.vox-cdn.com/thumbor/ourd2JzaI8FvVUAeHyMeZmOVUPQ=/0x0:2000x1335/2070x1164/filters:focal(840x508:1160x828):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/61623387/2018_09_28_GoldLineBar_003.0.jpg",
+    image: "https://www.maisondelaradio.fr/sites/default/files/styles/full_width_932/public/assets/images/photo1_0.jpg?itok=b4ea5-vu",
     title: "Pois",
     ubicacion: "calle 13"
   },
 ];
 
+const MainContainer = styled.div`
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+`;
+
+const SearchBar = styled.div`
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0px 4px 5px #EEEEEE;
+  height: 25px;
+  width: 300px;
+`;
+
+const Header = styled.div`
+  display: flex;
+  height: 50px;
+  width: 100%;
+  background-color: white;
+  border-color: #EEEEEE;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  justify-content: center;
+  align-items: center;
+  position:fixed;
+  width:100%;
+  left:0;
+  top:0;
+  right: 0;
+  z-index: 1000;
+`;
+
+const MainBodyContainer = styled.div`
+  padding-horizontal: 20px;
+  padding-top: 12px;
+`;
+
+const SubTitle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-color: #EE993B;
+  border-bottom-width: 4px;
+  border-bottom-style: solid;
+  width: 100%;
+  height: 30px;
+  padding-top: 50px;
+`;
+
+const Footer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  position: fixed;
+  background-color: white;
+  height: 60px;
+  width: 80%;
+  border-radius: 15px;
+  box-shadow: 0px 4px 5px #EEEEEE;
+`;
+
 export default class PuntosDeInteres extends Component {
   render () {
     return (
       <MainContainer>
-        <div style={{display: 'flex', width: '100%', backgroundColor: 'white', alignItems: 'center', justifyContent: 'center'}}>
-          <p>Puntos de interes</p>
-        </div>
+        <Header>
+          <SearchBar>
+            <input type="text" name="search" style={{borderColor: 'transparent', width: '100%'}}/>
+          </SearchBar>
+        </Header>
+        <SubTitle>
+          <p style={{fontSize: 14}}>Puntos de interes</p>
+        </SubTitle>
+        <MainBodyContainer>
         <div style={{backgroundColor: 'white', paddingLeft: 20, paddingRight: 20}}>
         {
-          data.map((item)=>{
+          data.map((item)=> {
             return (
-              <div style={{height: 150, width: 300,backgroundColor: 'white', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingBottom: 20}}>
-                <img style={{height: 150, width: 300, borderRadius: 10, position: "absolute"}} src={item.image} alt="Italian Trulli"/>
-                <p style={{fontSize: 40, color: 'white', position: 'absolute'}}>{item.title}</p>
+              <div style={{
+                height: 150,
+                backgroundColor: 'white', 
+                display: 'flex', 
+                flexDirection: 'column', 
+                alignItems: 'center', 
+                justifyContent: 'flex-end', 
+                paddingBottom: 20,
+              }}>
+                <img style={{height: 150, width: '100%', borderRadius: 10}} src={item.image}/>
+                <div style={{position: 'absolute', alignSelf: "flex-start", marginLeft: 20}}>
+                  <p style={{fontSize: 18, color: 'white' }}>{item.title}</p>
+                  <p style={{fontSize: 12, color: 'gray'}}>{item.ubicacion}</p>
+                </div>
               </div>
             )
           })
         }
-        <div style={{borderColor: 'black', borderWidth: 1, backgroundColor: 'white', height: 60, width: 300, borderRadius: 10}}>
-
         </div>
-        </div>
+        </MainBodyContainer>
+        <Footer>
+          <div style={{display:'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+            <p style={{fontSize: 10}}>50</p>
+            <p style={{fontSize: 7}}>Eventos cercanos</p>
+          </div>
+          <div style={{display:'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+            <p style={{fontSize: 10}}>250</p>
+            <p style={{fontSize: 7}}>negocios cercanos</p>
+          </div>
+          <div style={{display:'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+            <p style={{fontSize: 10}}>40</p>
+            <p style={{fontSize: 7}}>momentos nuevos</p>
+          </div>
+        </Footer>
       </MainContainer>
     )
   }
