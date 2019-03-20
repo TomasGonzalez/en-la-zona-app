@@ -145,11 +145,11 @@ export default class PuntosDeInteres extends Component {
           </div>
           <div style={{display:'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
             <p style={{fontSize: 10}}>250</p>
-            <p style={{fontSize: 7}}>negocios cercanos</p>
+            <p style={{fontSize: 7}}>Negocios cercanos</p>
           </div>
           <div style={{display:'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
             <p style={{fontSize: 10}}>40</p>
-            <p style={{fontSize: 7}}>momentos nuevos</p>
+            <p style={{fontSize: 7}}>Momentos nuevos</p>
           </div>
         </Footer>
       </MainContainer>
