@@ -80,8 +80,12 @@ const ButtonsWrapper = styled.div`
   padding-top: 30px;
 `;
 
-
 class AppMenu extends PureComponent {
+
+  state = {
+    open: false,
+  }
+
   render () {
     return (
       <MainContainer>
