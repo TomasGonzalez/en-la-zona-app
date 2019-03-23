@@ -1,13 +1,14 @@
 import React, { PureComponent } from 'react';
 import {
   Menu, 
-  Dropdown,
   Button, 
   Slider
 } from 'antd';
 import 'antd/dist/antd.css';
 import styled from 'styled-components';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const data = [
   "restaurantes",
@@ -20,9 +21,9 @@ const menu = (
   <Menu>
     {data.map((item)=>{
       return (
-        <Menu.Item>
+        <MenuItem>
           <a target="_blank" rel="noopener noreferrer">{item}</a>
-        </Menu.Item>
+        </MenuItem>
       )})
     }
   </Menu>
@@ -43,18 +44,13 @@ const PriceRange = styled.div`
 
 const Location = styled.div`
   padding-top: 20px;
-  height: 350px;
+  height: 300px;
 `;
 
 const MileRange = styled.div`
   padding-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
-`;
-
-const MapContainer = styled.div`
-  display: flex;
-  flex: 1;
 `;
 
 const LoginButton = styled.button`
@@ -72,7 +68,6 @@ const LoginButtonText = styled.p`
 
 const ButtonsWrapper = styled.div`
   display: flex;
-  flex: 1;
   justify-content: space-around;
   padding-top: 30px;
 `;
@@ -81,15 +76,26 @@ class AppMenu extends PureComponent {
 
   state = {
     open: false,
+    dropdownOpen: false,
+    selectedCategory: '',
   }
 
   render () {
     return (
       <MainContainer>
         <div style={{paddingLeft: 20, paddingRight: 20, width: '100%'}} >
-          <Dropdown overlay={menu} placement="bottomCenter">
-            <Button style={{width: '100%'}} >Categories</Button>
-          </Dropdown>
+            <Select 
+              value={this.state.selectedCategory}
+              onChange={(val)=>this.setState({selectedCategory: val.target.value})}
+              style={{width: '100%'}} >
+              {data.map((item)=>{
+                return (
+                  <MenuItem value={item} style={{backgroundColor: 'white'}}>
+                    {item}
+                  </MenuItem>
+                )})
+              }
+          </Select>
         </div>
         <PriceRange>
           <p style={{color: '#EE993B'}}> Rango de precio </p>
@@ -97,21 +103,19 @@ class AppMenu extends PureComponent {
         </PriceRange>
         <Location>
           <p style={{color: '#EE993B', paddingLeft: 20}}> Location </p>
-          <MapContainer>
             <Map
               google={this.props.google}
               zoom={14}
               style={{
-                marginRight: 20,
+                marginRight: 125,
                 marginLeft: 20,
-                height: 300
+                height: 250
               }}
               initialCenter={{
               lat: -1.2884,
               lng: 36.8233
               }}
             />
-          </MapContainer>
         </Location>
         <MileRange>
           <p style={{color: '#EE993B'}}> Rango de millas </p>

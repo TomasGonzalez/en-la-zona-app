@@ -8,11 +8,14 @@ import Drawer from '@material-ui/core/SwipeableDrawer';
 import SideBar from '../components/SideBar';
 import AppBar from '@material-ui/core/AppBar';
 import AppBarContainer from '../components/AppBarComponent';
+import Modal from '@material-ui/core/Modal';
+import ConfigurationModalComponent from '../components/ConfigurationModalComponent';
 
 class MainRouter extends PureComponent {
 
   state = {
     drawerOpen: false,
+    openOptions: false,
   }
 
   render () {
@@ -26,8 +29,18 @@ class MainRouter extends PureComponent {
         >
           <SideBar/>
         </Drawer>
+        <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={this.state.openOptions}
+          onClose={()=>this.setState({openOptions: false})}
+          style={{display: 'flex', justifyContent: 'flex-end', paddingTop: 20}}
+        >
+          <ConfigurationModalComponent/>
+        </Modal>
         <AppBar color={'white'}>
           <AppBarContainer 
+            handleOpenOptions={(open)=>this.setState({openOptions: open})}
             handleOpenBar={(open)=>this.setState({drawerOpen: open})}
           />
         </AppBar>

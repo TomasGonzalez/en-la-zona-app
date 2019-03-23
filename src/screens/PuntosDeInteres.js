@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import styled from 'styled-components';
-import { PageHeader } from 'antd';
+import Modal from '@material-ui/core/Modal';
+import ModalDescription from '../components/ModalDescription';
 
 const data = [
   {
@@ -47,7 +48,7 @@ const MainContainer = styled.div`
 const SearchBar = styled.div`
   background-color: white;
   border-radius: 6px;
-  box-shadow: 0px 4px 5px #EEEEEE;
+  box-shadow: 0px 4px 7px #EEEEEE;
   height: 25px;
   width: 300px;
 `;
@@ -101,12 +102,27 @@ const Footer = styled.div`
 `;
 
 export default class PuntosDeInteres extends Component {
+
+  state = {
+    openOptions: true,
+  }
+
   render () {
     return (
       <MainContainer>
+        <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={this.state.openOptions}
+          onClose={()=>this.setState({openOptions: false})}
+          style={{display: 'flex', justifyContent: 'flex-end', paddingTop: 20}}
+        >
+          <ModalDescription/>
+        </Modal>
         <Header>
           <SearchBar>
             <input 
+              placeholder="Buscar"
               type="text" 
               name="search" 
               style={{borderColor: 'transparent', width: '100%'}}
