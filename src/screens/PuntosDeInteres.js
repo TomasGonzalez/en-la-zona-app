@@ -62,7 +62,6 @@ const Header = styled.div`
   border-bottom-style: solid;
   justify-content: center;
   align-items: center;
-  position:fixed;
   width:100%;
   left:0;
   top:0;
@@ -84,7 +83,7 @@ const SubTitle = styled.div`
   border-bottom-style: solid;
   width: 100%;
   height: 30px;
-  padding-top: 50px;
+  padding-top: 15px;
 `;
 
 const Footer = styled.div`
@@ -107,19 +106,30 @@ export default class PuntosDeInteres extends Component {
       <MainContainer>
         <Header>
           <SearchBar>
-            <input type="text" name="search" style={{borderColor: 'transparent', width: '100%'}}/>
+            <input 
+              type="text" 
+              name="search" 
+              style={{borderColor: 'transparent', width: '100%'}}
+            />
           </SearchBar>
         </Header>
         <SubTitle>
           <p style={{fontSize: 14}}>Puntos de interes</p>
         </SubTitle>
         <MainBodyContainer>
-        <div style={{backgroundColor: 'white', paddingLeft: 20, paddingRight: 20}}>
+        <div style={{
+          backgroundColor: 'white', 
+          paddingLeft: 20, 
+          paddingRight: 20, 
+          marginBottom: 60,
+          marginTop: 40
+        }}>
         {
           data.map((item)=> {
             return (
               <div style={{
                 height: 150,
+                marginTop: 10,
                 backgroundColor: 'white', 
                 display: 'flex', 
                 flexDirection: 'column', 

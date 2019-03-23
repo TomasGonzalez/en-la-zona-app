@@ -28,31 +28,28 @@ const menu = (
   </Menu>
 );
 
-const mapStyles = {
-  height: '100%',
-};
-
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 40px;
   justify-content: center;
-  padding-left: 20px;
-  padding-right: 20px;
 `;
 
 const PriceRange = styled.div`
   padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 `;
 
 const Location = styled.div`
   padding-top: 20px;
   height: 350px;
-  width: 100px;
 `;
 
 const MileRange = styled.div`
   padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 `;
 
 const MapContainer = styled.div`
@@ -89,21 +86,24 @@ class AppMenu extends PureComponent {
   render () {
     return (
       <MainContainer>
-        <Dropdown overlay={menu} placement="bottomCenter">
-          <Button>Categories</Button>
-        </Dropdown>
+        <div style={{paddingLeft: 20, paddingRight: 20, width: '100%'}} >
+          <Dropdown overlay={menu} placement="bottomCenter">
+            <Button style={{width: '100%'}} >Categories</Button>
+          </Dropdown>
+        </div>
         <PriceRange>
           <p style={{color: '#EE993B'}}> Rango de precio </p>
           <Slider range defaultValue={[20, 50]} />
         </PriceRange>
         <Location>
-          <p style={{color: '#EE993B'}}> Location </p>
+          <p style={{color: '#EE993B', paddingLeft: 20}}> Location </p>
           <MapContainer>
             <Map
               google={this.props.google}
               zoom={14}
               style={{
-                width: window.innerWidth - 20,
+                marginRight: 20,
+                marginLeft: 20,
                 height: 300
               }}
               initialCenter={{
