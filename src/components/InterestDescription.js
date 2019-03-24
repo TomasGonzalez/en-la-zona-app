@@ -32,6 +32,10 @@ const image = 'https://zone-trt-bhxtb9xxzrrdpzhqr.netdna-ssl.com/wp-content/uplo
 
 class InterestDescription extends PureComponent {
 
+  state = {
+    seeMore: false,
+  }
+
   render () {
     return (
       <MainContainer>
@@ -48,7 +52,7 @@ class InterestDescription extends PureComponent {
             }}>bachata king</p>
         </TitleBar>
         <img style={{height: 150, width: '100%', marginTop: 20}} src={image}/>
-        <div style={{
+        <div onClick={()=>this.setState({seeMore: true})} style={{
           display: 'flex',
           flexDirection: 'column',
           height: 40, 
@@ -59,13 +63,20 @@ class InterestDescription extends PureComponent {
         }}>
           <p style={{color: '#4797F4'}} fontSize="60px"> Ver informacion </p>
         </div>
+        { this.state.seeMore &&
+          <div style={{backgroundColor: 'white', height: 50, padding: 10}}>
+            <p style={{fontSize: 10}}>
+              "A place to chill and dance some bachata, maybe even a mambo violento!"
+            </p>
+          </div>
+        }
         <div style={{
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-between',
           backgroundColor: 'white', 
           alignItems: 'center',
-          marginTop: 30, 
+          marginTop: 20, 
           paddingLeft: 10,
           paddingRight: 10
         }}>
@@ -89,27 +100,33 @@ class InterestDescription extends PureComponent {
           justifyContent: 'space-between',
           backgroundColor: 'white', 
           alignItems: 'center',
-          marginTop: 30, 
-          paddingLeft: 10,
-          paddingRight: 10,
-          height: 60
-        }}>
-          <div style={{display: 'flex', flexDirection: 'row'}}>
-            <div style={{height: 30, width: 30, borderRadius: 30, backgroundColor: '#C3DFFA'}}/>
-            <div style={{marginLeft: 10, height: 30, width: 30, borderRadius: 30, backgroundColor: '#C3DFFA'}}/>
-            <div style={{marginLeft: 10, height: 30, width: 30, borderRadius: 30, backgroundColor: '#C3DFFA'}}/>
-          </div>
-          <div style={{ 
-            display: 'flex',
-            backgroundColor: '#4797F4',
-            height: 30,
-            paddingTop: 10,
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderRadius: 15,
-            color: 'white'
+          marginTop: 20, 
+          padding: 10,
           }}>
-            <p style={{paddingLeft: 10, paddingRight: 10}}>ver mas</p>
+          <div style={{flex: 1}}>
+            <div>
+              <p>Reseña</p>
+            </div>
+            <div style={{display: 'flex', flexDirection: 'row'}}>
+              <div style={{height: 30, width: 30, borderRadius: 30, backgroundColor: '#C3DFFA'}}/>
+              <div style={{marginLeft: 10, height: 30, width: 30, borderRadius: 30, backgroundColor: '#C3DFFA'}}/>
+              <div style={{marginLeft: 10, height: 30, width: 30, borderRadius: 30, backgroundColor: '#C3DFFA'}}/>
+            </div>
+          </div>
+          <div>
+            <p style={{fontSize: 9}}>1200 reviews</p>
+            <div style={{ 
+              display: 'flex',
+              backgroundColor: '#4797F4',
+              height: 30,
+              paddingTop: 10,
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 15,
+              color: 'white'
+            }}>
+              <p style={{paddingLeft: 10, paddingRight: 10}}>ver mas</p>
+            </div>
           </div>
         </div>
       </MainContainer>
