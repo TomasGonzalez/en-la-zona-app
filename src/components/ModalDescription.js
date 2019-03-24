@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import SwipeableViews from 'react-swipeable-views';
 import Typography from '@material-ui/core/Typography';
-import orange from '@material-ui/core/colors/orange';
+import InterestDescription from './InterestDescription';
 
 const TabContainer = ({ children, dir }) => {
   return (
@@ -28,17 +28,22 @@ class ModalDescription extends PureComponent {
   state = {
     value: 0,
   };
-  
+
   handleChange = (event, value) => {
     this.setState({ value });
+  };
+
+  handleChangeIndex = index => {
+    this.setState({ value: index });
   };
 
   render () {
     const { classes, theme } = this.props;
     return (
-      <div style={{margin: 40}} className={classes.root}>
+      <div style={{margin: 40, backgroundColor: '#F2F9FE'}} className={classes.root}>
         <AppBar position="static" color="default">
           <Tabs
+            style={{backgroundColor: 'white'}}
             value={this.state.value}
             onChange={this.handleChange}
             TabIndicatorProps={{
@@ -58,7 +63,7 @@ class ModalDescription extends PureComponent {
           index={this.state.value}
           onChangeIndex={this.handleChangeIndex}
         >
-        <TabContainer dir={theme.direction}>Item One</TabContainer>
+        <InterestDescription style={{height: '100%', backgroundColor: 'red'}}/>
         <TabContainer dir={theme.direction}>Item Two</TabContainer>
       </SwipeableViews>
     </div>

@@ -143,7 +143,9 @@ export default class PuntosDeInteres extends Component {
         {
           data.map((item)=> {
             return (
-              <div style={{
+              <div 
+              onClick={()=>this.setState({openOptions: true})}
+              style={{
                 height: 150,
                 marginTop: 10,
                 backgroundColor: 'white', 
