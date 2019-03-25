@@ -75,7 +75,7 @@ class SideBar extends PureComponent {
               <ButtonText>Eventos</ButtonText>
             </Button>
           </NavButtons>
-          <NavButtons as={Link} to="/">
+          <NavButtons as={Link} to="/Business/">
             <Button style={buttonStyle} size={'large'}>
               <IosBriefcase fontSize="20px" color="#4E96F6" />
               <ButtonText>Negocios</ButtonText>

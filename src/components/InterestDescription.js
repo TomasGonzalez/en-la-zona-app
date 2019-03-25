@@ -52,7 +52,7 @@ class InterestDescription extends PureComponent {
             }}>bachata king</p>
         </TitleBar>
         <img style={{height: 150, width: '100%', marginTop: 20}} src={image}/>
-        <div onClick={()=>this.setState({seeMore: true})} style={{
+        <div onClick={()=>this.setState({seeMore: !this.state.seeMore})} style={{
           display: 'flex',
           flexDirection: 'column',
           height: 40, 
@@ -61,7 +61,7 @@ class InterestDescription extends PureComponent {
           justifyContent: 'center',
           paddingTop: 15,
         }}>
-          <p style={{color: '#4797F4'}} fontSize="60px"> Ver informacion </p>
+          <p style={{color: '#4797F4'}} fontSize="60px"> {!this.state.seeMore ? "Ver informacion" : "Mostrar menos"} </p>
         </div>
         { this.state.seeMore &&
           <div style={{backgroundColor: 'white', height: 50, padding: 10}}>

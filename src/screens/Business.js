@@ -1,36 +1,36 @@
-import React,{Component} from 'react';
+import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import Modal from '@material-ui/core/Modal';
 import ModalDescription from '../components/ModalDescription';
 
 const data = [
   {
-    image: "https://cdn.vox-cdn.com/thumbor/ourd2JzaI8FvVUAeHyMeZmOVUPQ=/0x0:2000x1335/2070x1164/filters:focal(840x508:1160x828):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/61623387/2018_09_28_GoldLineBar_003.0.jpg",
+    image: "https://i.ytimg.com/vi/CGCc3mI8nRc/maxresdefault.jpg",
     title: "Pois",
     ubicacion: "calle 13"
   },
   {
-    image: "https://www.maisondelaradio.fr/sites/default/files/styles/full_width_932/public/assets/images/photo1_0.jpg?itok=b4ea5-vu",
+    image: "https://www.diariohispaniola.com/fotos/1/Jalao.jpg",
     title: "Pois",
     ubicacion: "calle 13"
   },
   {
-    image: "https://cdn.vox-cdn.com/thumbor/ourd2JzaI8FvVUAeHyMeZmOVUPQ=/0x0:2000x1335/2070x1164/filters:focal(840x508:1160x828):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/61623387/2018_09_28_GoldLineBar_003.0.jpg",
+    image: "https://i.ytimg.com/vi/CGCc3mI8nRc/maxresdefault.jpg",
     title: "Pois",
     ubicacion: "calle 13"
   },
   {
-    image: "https://www.maisondelaradio.fr/sites/default/files/styles/full_width_932/public/assets/images/photo1_0.jpg?itok=b4ea5-vu",
+    image: "https://www.diariohispaniola.com/fotos/1/Jalao.jpg",
     title: "Pois",
     ubicacion: "calle 13"
   },
   {
-    image: "https://cdn.vox-cdn.com/thumbor/ourd2JzaI8FvVUAeHyMeZmOVUPQ=/0x0:2000x1335/2070x1164/filters:focal(840x508:1160x828):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/61623387/2018_09_28_GoldLineBar_003.0.jpg",
+    image: "https://i.ytimg.com/vi/CGCc3mI8nRc/maxresdefault.jpg",
     title: "Pois",
     ubicacion: "calle 13"
   },
   {
-    image: "https://www.maisondelaradio.fr/sites/default/files/styles/full_width_932/public/assets/images/photo1_0.jpg?itok=b4ea5-vu",
+    image: "https://www.diariohispaniola.com/fotos/1/Jalao.jpg",
     title: "Pois",
     ubicacion: "calle 13"
   },
@@ -87,21 +87,7 @@ const SubTitle = styled.div`
   padding-top: 15px;
 `;
 
-const Footer = styled.div`
-  display: flex;
-  justify-content: space-around;
-  background-color: white;
-  height: 60px;
-  width: 80%;
-  border-radius: 15px;
-  box-shadow: 0px 4px 5px #EEEEEE;
-
-  position:fixed;
-  bottom: 10px;
-  z-index: 1000;
-`;
-
-export default class PuntosDeInteres extends Component {
+class Business extends PureComponent {
 
   state = {
     openOptions: false,
@@ -121,16 +107,16 @@ export default class PuntosDeInteres extends Component {
         </Modal>
         <Header>
           <SearchBar>
-            <input 
+            <input
               placeholder="Buscar"
-              type="text" 
-              name="search" 
+              type="text"
+              name="search"
               style={{borderColor: 'transparent', width: '100%'}}
             />
           </SearchBar>
         </Header>
         <SubTitle>
-          <p style={{fontSize: 14}}>Puntos de interes</p>
+          <p style={{fontSize: 14}}>Negocios</p>
         </SubTitle>
         <MainBodyContainer>
         <div style={{
@@ -140,7 +126,7 @@ export default class PuntosDeInteres extends Component {
           marginBottom: 140,
           marginTop: 10
         }}>
-        {
+       {
           data.map((item)=> {
             return (
               <div 
@@ -151,7 +137,7 @@ export default class PuntosDeInteres extends Component {
                   flexDirection: 'column', 
                   alignItems: 'center', 
                   justifyContent: 'flex-end', 
-                  marginBottom: 70,
+                  marginBottom: 65,
                 }}>
                 <img style={{
                   height: 150, 
@@ -169,7 +155,7 @@ export default class PuntosDeInteres extends Component {
                   paddingLeft: 20,
                   paddingTop: 5
                   }}>
-                  <p style={{ fontWeight: 'bold'}}>{item.title}
+                  <p style={{fontWeight: 'bold'}}>{item.title}
                   <br/><span style={{color: 'black', fontWeight: 'normal'}}>{item.ubicacion}</span>
                   </p>
                 </div>
@@ -179,21 +165,9 @@ export default class PuntosDeInteres extends Component {
         }
         </div>
         </MainBodyContainer>
-        <Footer>
-          <div style={{display:'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-            <p style={{fontSize: 10}}>50</p>
-            <p style={{fontSize: 7}}>Eventos cercanos</p>
-          </div>
-          <div style={{display:'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-            <p style={{fontSize: 10}}>250</p>
-            <p style={{fontSize: 7}}>Negocios cercanos</p>
-          </div>
-          <div style={{display:'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-            <p style={{fontSize: 10}}>40</p>
-            <p style={{fontSize: 7}}>Momentos nuevos</p>
-          </div>
-        </Footer>
       </MainContainer>
     )
   }
 }
+
+export default Business;

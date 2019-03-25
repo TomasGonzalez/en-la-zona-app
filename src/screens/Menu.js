@@ -107,8 +107,7 @@ class AppMenu extends PureComponent {
               google={this.props.google}
               zoom={14}
               style={{
-                marginRight: 125,
-                marginLeft: 20,
+                width: 300,
                 height: 250
               }}
               initialCenter={{

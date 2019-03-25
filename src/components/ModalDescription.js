@@ -7,6 +7,7 @@ import AppBar from '@material-ui/core/AppBar';
 import SwipeableViews from 'react-swipeable-views';
 import Typography from '@material-ui/core/Typography';
 import InterestDescription from './InterestDescription';
+import MomentosPDI from './MomentosPDI';
 
 const TabContainer = ({ children, dir }) => {
   return (
@@ -40,8 +41,8 @@ class ModalDescription extends PureComponent {
   render () {
     const { classes, theme } = this.props;
     return (
-      <div style={{margin: 40, backgroundColor: '#F2F9FE'}} className={classes.root}>
-        <AppBar position="static" color="default">
+      <div style={{flex: 1, margin: 40, overflow: 'scroll'}}>
+        <AppBar position="sticky" color="default">
           <Tabs
             style={{backgroundColor: 'white'}}
             value={this.state.value}
@@ -63,8 +64,8 @@ class ModalDescription extends PureComponent {
           index={this.state.value}
           onChangeIndex={this.handleChangeIndex}
         >
-        <InterestDescription style={{height: '100%', backgroundColor: 'red'}}/>
-        <TabContainer dir={theme.direction}>Item Two</TabContainer>
+        <InterestDescription/>
+        <MomentosPDI/>
       </SwipeableViews>
     </div>
     )
