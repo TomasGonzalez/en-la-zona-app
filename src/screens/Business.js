@@ -137,7 +137,7 @@ class Business extends PureComponent {
                   flexDirection: 'column', 
                   alignItems: 'center', 
                   justifyContent: 'flex-end', 
-                  marginBottom: 65,
+                  marginBottom: 70,
                 }}>
                 <img style={{
                   height: 150, 

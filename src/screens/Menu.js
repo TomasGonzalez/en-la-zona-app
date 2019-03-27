@@ -111,8 +111,8 @@ class AppMenu extends PureComponent {
                 height: 250
               }}
               initialCenter={{
-              lat: -1.2884,
-              lng: 36.8233
+              lat: 18.472341,
+              lng: -69.886600
               }}
             />
         </Location>

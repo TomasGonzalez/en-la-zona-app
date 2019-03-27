@@ -86,7 +86,7 @@ export default class Login extends Component {
           <GoogleLogo>
             <GoogleLogoText>G+</GoogleLogoText>
           </GoogleLogo>
-          <LoginButton>
+          <LoginButton onClick={()=>window.location = '/PuntosDeInteres'}>
             <LoginButtonText>LOG IN</LoginButtonText>
           </LoginButton>
         </FormContainer>

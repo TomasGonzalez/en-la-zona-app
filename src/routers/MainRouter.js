@@ -48,8 +48,9 @@ class MainRouter extends PureComponent {
           <Route exact path="/Login/" component={Login}/>
           <Route exact path="/SignUp/" component={SignUp}/>
           <Route exact path="/PuntosDeInteres/" component={PuntosDeInteres}/>
+          <Route exact path="/" component={Login}/>
           <Route exact path="/Business/" component={Business}/>
-          <Route exact path="/" component={Menu}/>
+          <Route exact path="/Menu/" component={Menu}/>
         </div>
       </Router>
     )
