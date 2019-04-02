@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import logo from '../assets/main-logo.png';
 import styled from 'styled-components'
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
+import { compose } from 'redux';
 
 const MainContainer = styled.div`
   display: flex;
@@ -68,8 +71,13 @@ const LoginButtonText = styled.p`
   color: white;
 `;
 
-export default class Login extends Component {
+class Login extends Component {
   render () {
+
+    //this is how you get the data.
+    console.log('this is');
+    console.log(this.props.data);
+
     return (
       <MainContainer>
         <h1>En La Zona </h1>
@@ -94,3 +102,23 @@ export default class Login extends Component {
     );
   }
 }
+
+const username = "Tomas";
+const password = "asdw";
+
+const query = gql`
+  query($password: String!, $username: String!) {
+    verificarUsuario(nombreDeUsuario: $username, clave: $password)
+  }
+`;
+
+export default compose(
+  graphql(query, {
+    options: props => ({
+      variables: {
+        username: username,
+        password: password
+      },
+    })
+  }),
+)(Login);
