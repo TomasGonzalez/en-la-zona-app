@@ -69,7 +69,7 @@ class SideBar extends PureComponent {
               <ButtonText>Puntos de interes</ButtonText>
             </Button>
           </NavButtons>
-          <NavButtons as={Link} to="/">
+          <NavButtons as={Link} to="/Events">
             <Button style={buttonStyle} size={'large'}>
               <MdCalendar fontSize="20px" color="#4E96F6" />
               <ButtonText>Eventos</ButtonText>
@@ -81,7 +81,7 @@ class SideBar extends PureComponent {
               <ButtonText>Negocios</ButtonText>
             </Button>
           </NavButtons>
-          <NavButtons as={Link} to="/">
+          <NavButtons as={Link} to="/Momentos">
             <Button style={buttonStyle} size={'large'}>
               <MdHappy fontSize="20px" color="#4E96F6" />
               <ButtonText>Momentos</ButtonText>

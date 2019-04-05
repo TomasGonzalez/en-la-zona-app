@@ -11,6 +11,8 @@ import AppBarContainer from '../components/AppBarComponent';
 import Modal from '@material-ui/core/Modal';
 import ConfigurationModalComponent from '../components/ConfigurationModalComponent';
 import Business from "../screens/Business";
+import Events from "../screens/Events";
+import Momentos from "../screens/Momentos";
 
 class MainRouter extends PureComponent {
 
@@ -49,7 +51,9 @@ class MainRouter extends PureComponent {
           <Route exact path="/SignUp/" component={SignUp}/>
           <Route exact path="/PuntosDeInteres/" component={PuntosDeInteres}/>
           <Route exact path="/" component={Login}/>
+          <Route exact path="/Events" component={Events}/>
           <Route exact path="/Business/" component={Business}/>
+          <Route exact path="/Momentos/" component={Business}/>
           <Route exact path="/Menu/" component={Menu}/>
         </div>
       </Router>
