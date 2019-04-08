@@ -12,7 +12,7 @@ import { applyMiddleware, createStore } from 'redux';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 const client = new ApolloClient({
-  uri: 'localhost:5000/api',
+  uri: 'http://0.0.0.0:5000/api',
 });
 
 const store = createStore(rootReducer);
