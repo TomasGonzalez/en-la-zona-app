@@ -71,21 +71,21 @@ const Footer = styled.div`
   z-index: 1000;
 `;
 
+let texts = ""
+
 class PuntosDeInteres extends Component {
 
   state = {
     openOptions: false,
-    modalInfo: {}
+    modalInfo: {},
+    searchText: ""
   }
 
   render () {
     console.log(this.props.data)
-    if(!this.props.data.todosLosPuntosDeInteres){
+    if(!this.props.data.puntosDeInteresPorNombre){
       return(<div>Loading</div>)
     }
-    if(!this.props.data.todosLosPuntosDeInteres.edges){
-      return(<div>loading edges</div>)
-    }    
     return (
       <MainContainer>
         <Modal
@@ -102,6 +102,7 @@ class PuntosDeInteres extends Component {
         <Header>
           <SearchBar>
             <input 
+              onChange={(item) => this.props.data.refetch({nombre: item.target.value})}
               placeholder="Buscar"
               type="text" 
               name="search" 
@@ -121,10 +122,10 @@ class PuntosDeInteres extends Component {
           marginTop: 10
         }}>
         {
-          this.props.data.todosLosPuntosDeInteres.edges.map((item)=> {
+          this.props.data.puntosDeInteresPorNombre.map((item)=> {
             return (
               <div
-                onClick={()=>this.setState({openOptions: true, modalInfo: item.node})}
+                onClick={()=>this.setState({openOptions: true, modalInfo: item})}
                 style={{
                   height: 150,
                   marginTop: 10,
@@ -139,7 +140,7 @@ class PuntosDeInteres extends Component {
                   borderTopLeftRadius: 10, 
                   borderTopRightRadius: 10, 
                   objectFit: 'cover'
-                  }} src={item.node.foto}/>
+                  }} src={item.foto}/>
                 <div style={{
                   display: 'flex',
                   flexDirection: 'column',
@@ -149,8 +150,8 @@ class PuntosDeInteres extends Component {
                   paddingLeft: 20,
                   paddingTop: 5
                   }}>
-                  <p style={{ fontWeight: 'bold'}}>{item.node.nombre}
-                  <br/><span style={{color: 'black', fontWeight: 'normal'}}>{item.node.direccionCalle1}</span>
+                  <p style={{ fontWeight: 'bold'}}>{item.nombre}
+                  <br/><span style={{color: 'black', fontWeight: 'normal'}}>{item.direccionCalle1}</span>
                   </p>
                 </div>
               </div>
@@ -179,22 +180,23 @@ class PuntosDeInteres extends Component {
 }
 
 const query = gql`
-  query {
-    todosLosPuntosDeInteres{
-      edges{
-        node{
-          nombre
-          foto
-          latitud
-          longitud
-          direccionCalle1
-          descripcionCorta
-        }
-      }
-    }
-  }
+query($nombre: String!) {
+  puntosDeInteresPorNombre(nombre: $nombre, pagina:1, porPagina:10){
+   nombre
+   foto
+   latitud
+   longitud
+   direccionCalle1
+   descripcionCorta
+ }
+}
 `;
 
 export default compose(
-  graphql(query, {}),
+  graphql(query, {    
+    options: props => { console.log("this is props."); console.log(props); return({
+    variables: {
+      nombre: '',
+    },
+  })},}),
 )(PuntosDeInteres);

@@ -12,7 +12,7 @@ import { applyMiddleware, createStore } from 'redux';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 const client = new ApolloClient({
-  uri: 'http://0.0.0.0:5000/api',
+  uri: 'http://www.enlazonadmin.gq/api/',
 });
 
 const store = createStore(rootReducer);
