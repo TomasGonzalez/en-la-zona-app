@@ -64,7 +64,7 @@ class ModalDescription extends PureComponent {
           index={this.state.value}
           onChangeIndex={this.handleChangeIndex}
         >
-        <InterestDescription/>
+        <InterestDescription modalInfo={this.props.modalInfo}/>
         <MomentosPDI/>
       </SwipeableViews>
     </div>

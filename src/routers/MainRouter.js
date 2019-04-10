@@ -4,8 +4,6 @@ import Login from '../screens/Login';
 import SignUp from '../screens/SignUp';
 import PuntosDeInteres from '../screens/PuntosDeInteres';
 import Menu from "../screens/Menu";
-import Drawer from '@material-ui/core/SwipeableDrawer';
-import SideBar from '../components/SideBar';
 import AppBar from '@material-ui/core/AppBar';
 import AppBarContainer from '../components/AppBarComponent';
 import Modal from '@material-ui/core/Modal';
@@ -13,6 +11,12 @@ import ConfigurationModalComponent from '../components/ConfigurationModalCompone
 import Business from "../screens/Business";
 import Events from "../screens/Events";
 import Momentos from "../screens/Momentos";
+import Drawer from '@material-ui/core/SwipeableDrawer';
+import SideBar from '../components/SideBar';
+import Mapa from '../screens/Mapa';
+
+
+const dontNav = ['/Login'];
 
 class MainRouter extends PureComponent {
 
@@ -25,13 +29,15 @@ class MainRouter extends PureComponent {
     return (
       <Router>
         <div>
+        {!dontNav.includes(window.location.pathname) &&
           <Drawer 
-            onClose={()=>this.setState({drawerOpen: false})} 
-            open={this.state.drawerOpen}
-            onOpen={()=>this.setState({drawerOpen: true})} 
-          >
+              onClose={()=>this.setState({drawerOpen: false})} 
+              open={this.state.drawerOpen}
+              onOpen={()=>this.setState({drawerOpen: true})} 
+            >
             <SideBar/>
           </Drawer>
+        }
           <Modal
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description"
@@ -41,20 +47,24 @@ class MainRouter extends PureComponent {
           >
             <ConfigurationModalComponent/>
           </Modal>
-          <AppBar color={'white'}>
-            <AppBarContainer 
-              handleOpenOptions={(open)=>this.setState({openOptions: open})}
-              handleOpenBar={(open)=>this.setState({drawerOpen: open})}
-            />
-          </AppBar>
+          {console.log(window.location.pathname)}
+          {!dontNav.includes(window.location.pathname) &&
+            <AppBar color={'white'}>
+              <AppBarContainer 
+                handleOpenOptions={(open)=>this.setState({openOptions: open})}
+                handleOpenBar={(open)=>this.setState({drawerOpen: open})}
+              />
+            </AppBar>
+          }
           <Route exact path="/Login/" component={Login}/>
           <Route exact path="/SignUp/" component={SignUp}/>
           <Route exact path="/PuntosDeInteres/" component={PuntosDeInteres}/>
           <Route exact path="/" component={Login}/>
           <Route exact path="/Events" component={Events}/>
           <Route exact path="/Business/" component={Business}/>
-          <Route exact path="/Momentos/" component={Business}/>
+          <Route exact path="/Momentos/" component={Momentos}/>
           <Route exact path="/Menu/" component={Menu}/>
+          <Route exact path="/Mapa/" component={Mapa}/>
         </div>
       </Router>
     )

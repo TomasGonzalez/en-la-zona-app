@@ -131,7 +131,6 @@ class Events extends PureComponent {
           data.map((item)=> {
             return (
               <div 
-                onClick={()=>this.setState({openOptions: true})}
                 style={{
                   height: 150,
                   marginTop: 10,

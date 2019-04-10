@@ -37,6 +37,11 @@ class InterestDescription extends PureComponent {
   }
 
   render () {
+    if(!this.props.modalInfo){
+      return(
+        <div style={{backgroundColor: 'white', height: '100%'}}>Loading</div>
+      )
+    }
     return (
       <MainContainer>
         <TitleBar>
@@ -49,9 +54,9 @@ class InterestDescription extends PureComponent {
             borderRightColor: '#EE993B', 
             borderRightWidth: 2, 
             borderRightStyle: 'solid'
-            }}>bachata king</p>
+            }}>{this.props.modalInfo.nombre}</p>
         </TitleBar>
-        <img style={{height: 150, width: '100%', marginTop: 20}} src={image}/>
+        <img style={{height: 150, width: '100%', marginTop: 20}} src={this.props.modalInfo.foto}/>
         <div onClick={()=>this.setState({seeMore: !this.state.seeMore})} style={{
           display: 'flex',
           flexDirection: 'column',
@@ -66,11 +71,13 @@ class InterestDescription extends PureComponent {
         { this.state.seeMore &&
           <div style={{backgroundColor: 'white', height: 50, padding: 10}}>
             <p style={{fontSize: 10}}>
-              "A place to chill and dance some bachata, maybe even a mambo violento!"
+              "{this.props.modalInfo.descripcionCorta}"
             </p>
           </div>
         }
-        <div style={{
+        <div 
+        onClick={()=>window.open(`https://maps.google.com/maps?daddr=${this.props.modalInfo.latitud},${this.props.modalInfo.longitud}&amp;ll=`)} 
+        style={{
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-between',
@@ -80,9 +87,9 @@ class InterestDescription extends PureComponent {
           paddingLeft: 10,
           paddingRight: 10
         }}>
-          <p> 
-            Como llegar aqui {<br/>} Calle mercedes #13, esq. {<br/>}  Mirabal
-          </p>
+          <div> 
+            Como llegar aqui: {<br/>} {this.props.modalInfo.direccionCalle1} {<br/>}
+          </div>
           <div style={{ 
             display: 'flex',
             backgroundColor: '#4797F4',
@@ -94,7 +101,7 @@ class InterestDescription extends PureComponent {
             <MdArrowForward fontSize={15} color='white'/>
           </div>
         </div>
-        <div style={{
+        {/* <div style={{
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-between',
@@ -128,7 +135,7 @@ class InterestDescription extends PureComponent {
               <p style={{paddingLeft: 10, paddingRight: 10}}>ver mas</p>
             </div>
           </div>
-        </div>
+        </div> */}
       </MainContainer>
     )
   }

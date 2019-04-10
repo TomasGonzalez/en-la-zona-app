@@ -87,7 +87,7 @@ class SideBar extends PureComponent {
               <ButtonText>Momentos</ButtonText>
             </Button>
           </NavButtons>
-          <NavButtons as={Link} to="/">
+          <NavButtons as={Link} to="/Mapa">
             <Button style={buttonStyle} size={'large'}>
               <IosMapOutline fontSize="20px" color="#4E96F6" />
               <ButtonText>Mapa</ButtonText>

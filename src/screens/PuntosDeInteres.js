@@ -6,39 +6,6 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { compose } from 'redux';
 
-const data = [
-  {
-    image: "https://dl1.cbsistatic.com/i/r/2018/08/09/b6ca69f8-f123-408c-9b1f-ea3f9cf1fb17/resize/620xauto/8787947d1d00135d3f2ed512e56bee72/concert-crowd.jpg",
-    title: "Pois",
-    ubicacion: "calle 13"
-  },
-  {
-    image: "https://cdn.thewirecutter.com/wp-content/uploads/2017/09/picnicsgrilling-2x1-fullres-top-1024x512.jpg",
-    title: "Pois",
-    ubicacion: "calle 13"
-  },
-  {
-    image: "https://dl1.cbsistatic.com/i/r/2018/08/09/b6ca69f8-f123-408c-9b1f-ea3f9cf1fb17/resize/620xauto/8787947d1d00135d3f2ed512e56bee72/concert-crowd.jpg",
-    title: "Pois",
-    ubicacion: "calle 13"
-  },
-  {
-    image: "https://cdn.thewirecutter.com/wp-content/uploads/2017/09/picnicsgrilling-2x1-fullres-top-1024x512.jpg",
-    title: "Pois",
-    ubicacion: "calle 13"
-  },
-  {
-    image: "https://dl1.cbsistatic.com/i/r/2018/08/09/b6ca69f8-f123-408c-9b1f-ea3f9cf1fb17/resize/620xauto/8787947d1d00135d3f2ed512e56bee72/concert-crowd.jpg",
-    title: "Pois",
-    ubicacion: "calle 13"
-  },
-  {
-    image: "https://cdn.thewirecutter.com/wp-content/uploads/2017/09/picnicsgrilling-2x1-fullres-top-1024x512.jpg",
-    title: "Pois",
-    ubicacion: "calle 13"
-  },
-];
-
 const MainContainer = styled.div`
   display: flex;
   height: 100%;
@@ -108,6 +75,7 @@ class PuntosDeInteres extends Component {
 
   state = {
     openOptions: false,
+    modalInfo: {}
   }
 
   render () {
@@ -117,9 +85,7 @@ class PuntosDeInteres extends Component {
     }
     if(!this.props.data.todosLosPuntosDeInteres.edges){
       return(<div>loading edges</div>)
-    }
-    console.log(this.props.data.todosLosPuntosDeInteres.edges);
-    
+    }    
     return (
       <MainContainer>
         <Modal
@@ -129,7 +95,9 @@ class PuntosDeInteres extends Component {
           onClose={()=>this.setState({openOptions: false})}
           style={{display: 'flex', justifyContent: 'flex-end', paddingTop: 20}}
         >
-          <ModalDescription/>
+          <ModalDescription
+            modalInfo={this.state.modalInfo}
+          />
         </Modal>
         <Header>
           <SearchBar>
@@ -155,8 +123,8 @@ class PuntosDeInteres extends Component {
         {
           this.props.data.todosLosPuntosDeInteres.edges.map((item)=> {
             return (
-              <div 
-                onClick={()=>this.setState({openOptions: true})}
+              <div
+                onClick={()=>this.setState({openOptions: true, modalInfo: item.node})}
                 style={{
                   height: 150,
                   marginTop: 10,
@@ -171,7 +139,7 @@ class PuntosDeInteres extends Component {
                   borderTopLeftRadius: 10, 
                   borderTopRightRadius: 10, 
                   objectFit: 'cover'
-                  }} src={data[0].image}/>
+                  }} src={item.node.foto}/>
                 <div style={{
                   display: 'flex',
                   flexDirection: 'column',
@@ -182,7 +150,7 @@ class PuntosDeInteres extends Component {
                   paddingTop: 5
                   }}>
                   <p style={{ fontWeight: 'bold'}}>{item.node.nombre}
-                  <br/><span style={{color: 'black', fontWeight: 'normal'}}>{'here goes ubication'}</span>
+                  <br/><span style={{color: 'black', fontWeight: 'normal'}}>{item.node.direccionCalle1}</span>
                   </p>
                 </div>
               </div>
@@ -216,6 +184,11 @@ const query = gql`
       edges{
         node{
           nombre
+          foto
+          latitud
+          longitud
+          direccionCalle1
+          descripcionCorta
         }
       }
     }

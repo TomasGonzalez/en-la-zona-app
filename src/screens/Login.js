@@ -33,6 +33,8 @@ const Input = styled.input`
   border-bottom-width: 1px;
   padding-bottom: 15px;
   padding-left: 5px;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Logo = styled.img`
@@ -89,11 +91,11 @@ class Login extends Component {
           </InputField>
           <InputField class="inputField">
             <p style={{color: "#9D9D9D"}}>Password</p> 
-            <Input type="text" name="fname"/>
+            <Input type="password" name="password"/>
           </InputField>
-          <GoogleLogo>
+          {/* <GoogleLogo>
             <GoogleLogoText>G+</GoogleLogoText>
-          </GoogleLogo>
+          </GoogleLogo> */}
           <LoginButton onClick={()=>window.location = '/PuntosDeInteres'}>
             <LoginButtonText>LOG IN</LoginButtonText>
           </LoginButton>
