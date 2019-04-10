@@ -181,7 +181,7 @@ class PuntosDeInteres extends Component {
 
 const query = gql`
 query($nombre: String!) {
-  puntosDeInteresPorNombre(nombre: $nombre, pagina:1, porPagina:10){
+  puntosDeInteresPorNombre(nombre: $nombre, pagina:1, porPagina:20){
    nombre
    foto
    latitud
@@ -189,8 +189,7 @@ query($nombre: String!) {
    direccionCalle1
    descripcionCorta
  }
-}
-`;
+}`;
 
 export default compose(
   graphql(query, {    
