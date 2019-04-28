@@ -5,6 +5,8 @@ import IosThumbsDown from 'react-ionicons/lib/IosThumbsDown'
 
 class MomentosPDI extends PureComponent {
   render () {
+    console.log( window.scrollY);
+
     return(
       <div>
         {mData.map((item)=>{

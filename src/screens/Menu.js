@@ -6,7 +6,7 @@ import {
 } from 'antd';
 import 'antd/dist/antd.css';
 import styled from 'styled-components';
-import { Map, GoogleApiWrapper } from 'google-maps-react';
+import Map, { GoogleApiWrapper, Circle } from 'google-maps-react';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
@@ -15,6 +15,13 @@ const data = [
   "heladerias",
   "turismo",
   "esculturas",
+];
+
+const triangleCoords = [
+  {lat: 25.774, lng: -80.190},
+  {lat: 18.466, lng: -66.118},
+  {lat: 32.321, lng: -64.757},
+  {lat: 25.774, lng: -80.190}
 ];
 
 const menu = (
@@ -78,6 +85,7 @@ class AppMenu extends PureComponent {
     open: false,
     dropdownOpen: false,
     selectedCategory: '',
+    mileRange: [0, 50],
   }
 
   render () {
@@ -97,15 +105,17 @@ class AppMenu extends PureComponent {
               }
           </Select>
         </div>
-        <PriceRange>
+        {/* <PriceRange>
           <p style={{color: '#EE993B'}}> Rango de precio </p>
           <Slider range defaultValue={[20, 50]} />
-        </PriceRange>
+        </PriceRange> */}
         <Location>
           <p style={{color: '#EE993B', paddingLeft: 20}}> Location </p>
             <Map
+              yesIWantToUseGoogleMapApiInternals
+              onGoogleApiLoaded={() => console.log('loaded?')} 
               google={this.props.google}
-              zoom={14}
+              zoom={((-this.state.mileRange[1] / 10) + 20)}
               style={{
                 width: 300,
                 height: 250
@@ -118,15 +128,19 @@ class AppMenu extends PureComponent {
         </Location>
         <MileRange>
           <p style={{color: '#EE993B'}}> Rango de millas </p>
-          <Slider range defaultValue={[20, 50]} />
+          <Slider 
+            range 
+            defaultValue={this.state.mileRange} 
+            onChange={value=>this.setState({mileRange: value})}
+          />
         </MileRange>
         <ButtonsWrapper>
-          <LoginButton style={{backgroundColor: 'gray'}}>
+          {/* <LoginButton style={{backgroundColor: 'gray'}}>
             <LoginButtonText> Restablecer </LoginButtonText>
           </LoginButton>
           <LoginButton>
             <LoginButtonText> Aplicar </LoginButtonText>
-          </LoginButton>
+          </LoginButton> */}
         </ButtonsWrapper>
       </MainContainer>
     )

@@ -93,7 +93,7 @@ class PuntosDeInteres extends Component {
           aria-describedby="simple-modal-description"
           open={this.state.openOptions}
           onClose={()=>this.setState({openOptions: false})}
-          style={{display: 'flex', justifyContent: 'flex-end', paddingTop: 20}}
+          style={{height: '100%', display: 'flex', justifyContent: 'flex-end', paddingTop: 20}}
         >
           <ModalDescription
             modalInfo={this.state.modalInfo}
@@ -193,7 +193,7 @@ query($nombre: String!) {
 
 export default compose(
   graphql(query, {    
-    options: props => { console.log("this is props."); console.log(props); return({
+    options: props => { return({
     variables: {
       nombre: '',
     },

@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import styled from 'styled-components';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { withStyles } from '@material-ui/core/styles';
@@ -8,6 +7,14 @@ import SwipeableViews from 'react-swipeable-views';
 import Typography from '@material-ui/core/Typography';
 import InterestDescription from './InterestDescription';
 import MomentosPDI from './MomentosPDI';
+import styled from 'styled-components';
+
+const MainContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 40px;
+`;
+
 
 const TabContainer = ({ children, dir }) => {
   return (
@@ -30,7 +37,7 @@ class ModalDescription extends PureComponent {
     value: 0,
   };
 
-  handleChange = (event, value) => {
+  handleChange = (event, value) => {    
     this.setState({ value });
   };
 
@@ -39,9 +46,9 @@ class ModalDescription extends PureComponent {
   };
 
   render () {
-    const { classes, theme } = this.props;
+    const { theme } = this.props;
     return (
-      <div style={{flex: 1, margin: 40, overflow: 'scroll'}}>
+      <MainContainer>
         <AppBar position="sticky" color="default">
           <Tabs
             style={{backgroundColor: 'white'}}
@@ -63,11 +70,12 @@ class ModalDescription extends PureComponent {
           axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
           index={this.state.value}
           onChangeIndex={this.handleChangeIndex}
+          style={{overflow: !this.state.value ? 'hidden': 'scroll', scrollTop:'50'}}
         >
-        <InterestDescription modalInfo={this.props.modalInfo}/>
+        <InterestDescription value={this.state.value} modalInfo={this.props.modalInfo}/>
         <MomentosPDI/>
       </SwipeableViews>
-    </div>
+    </MainContainer>
     )
   }
 }

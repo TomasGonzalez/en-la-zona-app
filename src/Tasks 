@@ -1,0 +1,78 @@
+Smoke/Overview testing
+
+*-GENERAL *
+- PWA esta en la aplicacion? porque por default 
+solo esta ver en el browser y no en como una aplicacion *
+
+
+*-LOGIN
+- No hay pantalla de registro, ni boton para ir a esa pantalla. *
+- Se ve el boton de menu y sorting en el log in, sin duda sorting no va pero el menu 
+  se puede dejar si se accede al login a traves de ir al perfil cuando estes logged out *
+- la primera pantalla al abrir la aplicacion es el feed pues el log in es opcional*
+
+- Log in no revisa usuario/password **********
+
+
+*-MENU
+
+- Perfil no existe, es un espacio azul ************
+
+- Inicio te manda al log in no al feed *
+- Log out no hace nada *
+- Ajustes apunta a log in *
+
+
+*-POI
+---Backend issue----- *
+- El search deberia poder buscar aunque no sea resultados exactos (si busco "Briciola" deberia salir "la briciola" *
+
+--subjective issue----
+- Al buscar la direccion de un poi no deberia sacarte para ir a google maps, deberia buscarte usando el mapa de la aplicacion *
+
+--- Low priority issue -----
+- En la descripcion, presionar la imagen deberia tambien abrir el "ver infomracion"
+
+- No estan las reseñas en la descripcion
+- En los momentos no puedes entrar a ellos, no puedes dar like/dislike, no puedes visitar el perfil de quien lo puso, no esta implementado
+- No hay filtro
+- La gente a la hora de salir del modal va a presionar back, el back deberia cerrar el modal
+-- Quitar el sombreo (osea seleccinar las letras) en los 3 "botones" de abajo, no eran botones? si lo son no estan implementado
+
+
+*-SORTING
+- El sorting no esta implementado, no recuerda ningun cambio y esta visible en todas las pantallas 
+- El sorting no deberia tener que presionar el boton "aplicar" para aplicar, deberia cambiar desde que selecciones algo
+- El sorting aparece sin categoria por default, vacio, si va estar con algo por default deberia ser "Todo"
+- El Rango de precio no hace nada y no tiene numeros
+- El mapa no hace nada
+- El rango de millas no hace nada y no tiene numeros
+
+
+*-EVENTOS
+
+-- No hay modal para eventos? no recuerdo. si lo hay no esta implementado, deberia haber una forma de saber algo mas sobre un evento que el nombre y la calle
+- Eventos dice negocios arriba
+- El search no funciona
+
+*-NEGOCIOS
+
+- Mismos errores en el modal de aqui que aparecen en PoI (en momentos pues descricpion no carga)
+
+
+*-MOMENTOS
+
+- Dice negocios arriba
+- Buscar no hace nada
+- El modal no es el mismo que en los otros. pues no hay descripcion de un momento, revisar diseño
+- No carga el modal
+
+*-MAPA
+
+- Deberia haber algo que haga que la zona sobresalga, ademas de aparecer ahi por default
+- El boton que parece que "ubicame" es el boton de fullscreen
+- si el muñequito de abajo es el ubicame pues no funciona 
+- Como llego a la zona si salgo(osea me voy a otro lado de la capital) en el mapa? si salgo deberia ir un boton que ubique en la zona o no dar la opcion de salir
+- Presionar algo en el mapa no hace que salga la informacion breve
+- Al no haber informacion breve de algo no se puede redireccionar al PoI de ese lugar seleccionado
+-- Deberia haber filtro y sorting en el mapa

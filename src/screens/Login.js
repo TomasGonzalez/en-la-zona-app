@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { compose } from 'redux';
+import { Link } from "react-router-dom";
 
 const MainContainer = styled.div`
   display: flex;
@@ -74,6 +75,9 @@ const LoginButtonText = styled.p`
 `;
 
 class Login extends Component {
+
+
+  
   render () {
 
     //this is how you get the data.
@@ -93,12 +97,12 @@ class Login extends Component {
             <p style={{color: "#9D9D9D"}}>Password</p> 
             <Input type="password" name="password"/>
           </InputField>
-          {/* <GoogleLogo>
-            <GoogleLogoText>G+</GoogleLogoText>
-          </GoogleLogo> */}
           <LoginButton onClick={()=>window.location = '/PuntosDeInteres'}>
             <LoginButtonText>LOG IN</LoginButtonText>
           </LoginButton>
+          <Link to="/signUp/" style={{marginTop: 30}}>
+            registrar
+          </Link>
         </FormContainer>
       </MainContainer>
     );

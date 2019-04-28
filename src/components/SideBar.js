@@ -8,6 +8,7 @@ import MdHappy from 'react-ionicons/lib/MdHappy';
 import IosMapOutline from 'react-ionicons/lib/IosMapOutline';
 import IosSettings from 'react-ionicons/lib/IosSettings';
 import IosLogOut from 'react-ionicons/lib/IosLogOut';
+import MdPerson from "react-ionicons/lib/MdPerson";
 
 import { Button } from 'antd';
 import { Link } from "react-router-dom";
@@ -17,6 +18,9 @@ const MainContainer = styled.div`
 `;
 
 const ProfileImage = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #313A52;
   height: 150px;
   border-bottom-color: #4E96F6;
@@ -51,10 +55,21 @@ const ButtonText = styled.p`
 `;
 
 class SideBar extends PureComponent {
+
+  handleLogout = () => {
+    if(localStorage.getItem("user")){
+      localStorage.removeItem("user");
+      this.forceUpdate();
+    }
+  }
+
   render () {    
     return (
       <MainContainer>
         <ProfileImage>
+          <div style={{backgroundColor: 'white', borderRadius: 15}}>
+            <MdPerson fontSize="60px" size={'large'}/>
+          </div>
         </ProfileImage>
         <NavButtonsContainer>
           <NavButtons as={Link} to="/">
@@ -93,17 +108,21 @@ class SideBar extends PureComponent {
               <ButtonText>Mapa</ButtonText>
             </Button>
           </NavButtons>
-          <NavButtons as={Link} to="/">
+          {/* <NavButtons as={Link} to="/">
             <Button style={buttonStyle} size={'large'}>
               <IosSettings fontSize="20px" color="#4E96F6" />
               <ButtonText>Ajustes</ButtonText>
             </Button>
-          </NavButtons>
+          </NavButtons> */}
         </NavButtonsContainer>
-          <NavButtons style={{backgroundColor: '#EE993B', marginTop: 20}}>
+          <NavButtons 
+          as={Link} 
+          to={"/Login"} 
+          onClick={this.handleLogout} 
+          style={{backgroundColor: '#EE993B', marginTop: 20}}>
             <Button style={buttonStyle} size={'large'}>
               <IosLogOut fontSize="20px" color="white" />
-              <ButtonText>Log Out</ButtonText>
+              <ButtonText >{localStorage.getItem("user") ? 'Log Out': 'Log in'}</ButtonText>
             </Button>
           </NavButtons>
       </MainContainer>

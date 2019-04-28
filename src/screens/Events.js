@@ -117,7 +117,7 @@ class Events extends PureComponent {
           </SearchBar>
         </Header>
         <SubTitle>
-          <p style={{fontSize: 14}}>Negocios</p>
+          <p style={{fontSize: 14}}>Eventos</p>
         </SubTitle>
         <MainBodyContainer>
         <div style={{

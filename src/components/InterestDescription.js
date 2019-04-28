@@ -21,11 +21,12 @@ const MainContainer = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  height: 100%;  
   background-color: #F2F9FE;
   padding-left: 20px;
   padding-right: 20px;
-
+  height: 100%;
+  padding-bottom: 10px;
+  overflow: hidden;
 `;
 
 const image = 'https://zone-trt-bhxtb9xxzrrdpzhqr.netdna-ssl.com/wp-content/uploads/2017/06/sugar-club-bangkok-860x572.jpg';
@@ -34,6 +35,12 @@ class InterestDescription extends PureComponent {
 
   state = {
     seeMore: false,
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(!nextProps.value){
+      window.scrollTo(0, 0);
+    }
   }
 
   render () {
