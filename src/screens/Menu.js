@@ -10,6 +10,10 @@ import Map, { GoogleApiWrapper, Circle } from 'google-maps-react';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
+import { compose } from 'redux';
+
 const data = [
   "restaurantes",
   "heladerias",
@@ -88,20 +92,44 @@ class AppMenu extends PureComponent {
     mileRange: [0, 50],
   }
 
+  onSelectCategory = (val) => {
+    this.setState({selectedCategory: val.target.value})
+    localStorage.setItem('category', JSON.stringify(val.target.value));
+    this.props.update();
+  }
+
+  componentDidMount = () => {    
+    if(localStorage.getItem('category')){
+      this.setState({selectedCategory: JSON.parse(localStorage.getItem('category'))})
+    }
+  }
+
   render () {
+    console.log('JSON, parse:', JSON.parse(localStorage.getItem('category')));
+    console.log(this.props.data.categorias);
+    console.log('state: ', this.state.selectedCategory);
+    
+    if(!this.props.data.categorias){
+      return(<div>Loading</div>)
+    }
+
+    const renderData = [{idCategoria: "0", nombre: "Ninguna"}, ...this.props.data.categorias];
     return (
       <MainContainer>
-        <div style={{paddingLeft: 20, paddingRight: 20, width: '100%'}} >
+        <div style={{paddingLeft: 20, paddingRight: 20, width: '100%'}}>
             <Select 
               value={this.state.selectedCategory}
-              onChange={(val)=>this.setState({selectedCategory: val.target.value})}
-              style={{width: '100%'}} >
-              {data.map((item)=>{
-                return (
-                  <MenuItem value={item} style={{backgroundColor: 'white'}}>
-                    {item}
-                  </MenuItem>
-                )})
+              onChange={this.onSelectCategory}
+              style={{width: '100%'}}
+              renderValue={()=>this.state.selectedCategory.nombre}
+            >
+              {renderData.map((item)=>{
+                  return (
+                    <MenuItem value={item} style={{backgroundColor: 'white'}}>
+                      {item.nombre}
+                    </MenuItem>
+                  )}
+                )
               }
           </Select>
         </div>
@@ -147,6 +175,15 @@ class AppMenu extends PureComponent {
   }
 }
 
-export default GoogleApiWrapper({
-  apiKey: 'AIzaSyCNUVMEuum1nbB3aDSVzC3eDb9LrWuI9_g'
-})(AppMenu);
+const query = gql`
+query{
+  categorias{
+  	idCategoria
+    nombre
+	}
+}`;
+
+export default compose(
+  GoogleApiWrapper({apiKey: 'AIzaSyCNUVMEuum1nbB3aDSVzC3eDb9LrWuI9_g'}),
+  graphql(query)
+)(AppMenu)

@@ -13,7 +13,7 @@ class ConfigurationModalComponent extends PureComponent {
   render () {
     return (
       <MainModalView>
-        <Menu/>
+        <Menu update={this.props.update}/>
       </MainModalView>
     )
   }

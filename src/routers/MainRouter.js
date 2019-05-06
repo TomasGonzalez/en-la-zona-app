@@ -43,7 +43,7 @@ class MainRouter extends PureComponent {
             onClose={()=>this.setState({openOptions: false})}
             style={{display: 'flex', justifyContent: 'flex-end', paddingTop: 20}}
           >
-            <ConfigurationModalComponent/>
+            <ConfigurationModalComponent update={()=>{console.log("bru"); this.forceUpdate()}}/>
           </Modal>
           {console.log(window.location.pathname)}
           {!dontNav.includes(window.location.pathname) &&

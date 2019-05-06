@@ -73,6 +73,8 @@ const Footer = styled.div`
 
 let texts = ""
 
+let setCategory = {idCategoria: 0};
+
 class PuntosDeInteres extends Component {
 
   state = {
@@ -81,11 +83,17 @@ class PuntosDeInteres extends Component {
     searchText: ""
   }
 
+  componentWillReceiveProps (nextProps) {
+    if(localStorage.getItem('category')){
+      setCategory = JSON.parse(localStorage.getItem('category'));
+    }
+  }
+
   render () {
-    console.log(this.props.data)
-    if(!this.props.data.puntosDeInteresPorNombre){
+    if(!this.props.data.puntosDeInteres){
       return(<div>Loading</div>)
     }
+
     return (
       <MainContainer>
         <Modal
@@ -122,7 +130,7 @@ class PuntosDeInteres extends Component {
           marginTop: 10
         }}>
         {
-          this.props.data.puntosDeInteresPorNombre.map((item)=> {
+          this.props.data.puntosDeInteres.map((item)=> {
             return (
               <div
                 onClick={()=>this.setState({openOptions: true, modalInfo: item})}
@@ -180,15 +188,15 @@ class PuntosDeInteres extends Component {
 }
 
 const query = gql`
-query($nombre: String!) {
-  puntosDeInteresPorNombre(nombre: $nombre, pagina:1, porPagina:20){
-   nombre
-   foto
-   latitud
-   longitud
-   direccionCalle1
-   descripcionCorta
- }
+query($nombre: String!, $categoria: Int!) {
+  puntosDeInteres(nombre: $nombre, pagina:1, porPagina:20, categoria: $categoria){
+     nombre
+     foto
+     latitud
+     longitud
+     direccionCalle1
+     descripcionCorta
+   }
 }`;
 
 export default compose(
@@ -196,6 +204,7 @@ export default compose(
     options: props => { return({
     variables: {
       nombre: '',
+      categoria: parseInt(setCategory.idCategoria)
     },
   })},}),
 )(PuntosDeInteres);
