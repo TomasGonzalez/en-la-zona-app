@@ -95,9 +95,9 @@ class PuntosDeInteres extends Component {
       return <div>Loading</div>;
     }
 
-    // if (!this.props.isGeolocationEnabled) {
-    //   return <div>turn the location please</div>;
-    // }
+    if (!this.props.isGeolocationEnabled) {
+      return <div>turn the location please</div>;
+    }
 
     return (
       <MainContainer>

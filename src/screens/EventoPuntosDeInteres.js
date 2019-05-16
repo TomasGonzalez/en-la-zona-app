@@ -60,6 +60,21 @@ const SubTitle = styled.div`
   padding-top: 15px;
 `;
 
+const ActiveTabs = styled.div`
+  display: flex;
+  width: 100%;
+  height: 40px;
+  align-items: center;
+  justify-content: space-around;
+  background-color: white;
+`;
+
+const Active = styled.div`
+  border-bottom: solid 3px #de9c4c;
+  padding-top: 4px;
+  padding-bottom: 4px;
+`;
+
 class EventoPuntosDeinteres extends PureComponent {
   state = {
     openOptions: false
@@ -72,6 +87,31 @@ class EventoPuntosDeinteres extends PureComponent {
 
     return (
       <MainContainer>
+        <ActiveTabs>
+          <div
+            onClick={() =>
+              this.props.history.push(
+                `/DescripcionPuntosDeInteres?id=${
+                  qs.parse(window.location.search).id
+                }`
+              )
+            }
+          >
+            Descripcion
+          </div>
+          <div
+            onClick={() =>
+              this.props.history.push(
+                `/MomentosPuntosDeInteres?id=${
+                  qs.parse(window.location.search).id
+                }`
+              )
+            }
+          >
+            Momentos
+          </div>
+          <Active>Eventos</Active>
+        </ActiveTabs>
         <Modal
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"

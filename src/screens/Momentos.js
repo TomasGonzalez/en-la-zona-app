@@ -165,7 +165,9 @@ class MomentosPDI extends PureComponent {
             </div>
           );
         })}
-        <Footer onClick={() => {}}>Agregar</Footer>
+        <Footer onClick={() => this.props.history.push("/AddNewMoment")}>
+          Agregar
+        </Footer>
       </div>
     );
   }

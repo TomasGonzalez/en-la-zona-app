@@ -27,7 +27,7 @@ const MainContainer = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  background-color: #f2f2f2;
+  background-color: white;
   height: 100vh;
   padding-left: 20px;
   padding-right: 20px;
@@ -136,7 +136,7 @@ class InterestDescription extends PureComponent {
           </p>
         </div>
         {this.state.seeMore && (
-          <div style={{ backgroundColor: "white", height: 50, padding: 10 }}>
+          <div style={{ backgroundColor: "#f2f2f2", height: 50, padding: 10 }}>
             <p style={{ fontSize: 10 }}>
               "{this.props.data.puntoDeInteres.descripcionCorta}"
             </p>
@@ -183,7 +183,7 @@ class InterestDescription extends PureComponent {
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
-            backgroundColor: "white",
+            backgroundColor: "#f2f2f2",
             alignItems: "center",
             marginTop: 20,
             padding: 10
