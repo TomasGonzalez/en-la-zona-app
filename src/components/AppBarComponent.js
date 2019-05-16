@@ -1,7 +1,7 @@
-import React, { PureComponent } from 'react';
-import styled from 'styled-components';
-import IosMenuOutline from 'react-ionicons/lib/IosMenuOutline';
-import IosOptionsOutline from 'react-ionicons/lib/IosOptionsOutline';
+import React, { PureComponent } from "react";
+import styled from "styled-components";
+import IosMenuOutline from "react-ionicons/lib/IosMenuOutline";
+import IosOptionsOutline from "react-ionicons/lib/IosOptionsOutline";
 
 const MainContainer = styled.div`
   display: flex;
@@ -13,22 +13,24 @@ const MainContainer = styled.div`
   justify-content: space-between;
 `;
 
-const dontNav = ['/Login'];
+const dontNav = [
+  "/Login",
+  "/DescripcionPuntosDeInteres",
+  "/MomentosPuntosDeInteres"
+];
 
 class AppBarComponent extends PureComponent {
-  render () {
+  render() {
     return (
       <MainContainer>
-        <IosMenuOutline 
-          onClick={()=>this.props.handleOpenBar(true)}
+        <IosMenuOutline onClick={() => this.props.handleOpenBar(true)} />
+        {!dontNav.includes(window.location.pathname) && (
+          <IosOptionsOutline
+            onClick={() => this.props.handleOpenOptions(true)}
           />
-      {!dontNav.includes(window.location.pathname) &&
-        <IosOptionsOutline 
-          onClick={()=>this.props.handleOpenOptions(true)}
-        />
-      }
+        )}
       </MainContainer>
-    )
+    );
   }
 }
 

@@ -1,40 +1,50 @@
-import React,{ PureComponent } from 'react';
+import React, { PureComponent } from "react";
 
-import styled from 'styled-components';
-import Modal from '@material-ui/core/Modal';
-import ModalDescription from '../components/ModalDescription';
+import styled from "styled-components";
+import Modal from "@material-ui/core/Modal";
+import ModalDescription from "../components/ModalDescription";
+
+import gql from "graphql-tag";
+import { graphql } from "react-apollo";
+import { compose } from "redux";
 
 const data = [
   {
-    image: "https://dl1.cbsistatic.com/i/r/2018/08/09/b6ca69f8-f123-408c-9b1f-ea3f9cf1fb17/resize/620xauto/8787947d1d00135d3f2ed512e56bee72/concert-crowd.jpg",
+    image:
+      "https://dl1.cbsistatic.com/i/r/2018/08/09/b6ca69f8-f123-408c-9b1f-ea3f9cf1fb17/resize/620xauto/8787947d1d00135d3f2ed512e56bee72/concert-crowd.jpg",
     title: "Pois",
     ubicacion: "calle 13"
   },
   {
-    image: "https://cdn.thewirecutter.com/wp-content/uploads/2017/09/picnicsgrilling-2x1-fullres-top-1024x512.jpg",
+    image:
+      "https://cdn.thewirecutter.com/wp-content/uploads/2017/09/picnicsgrilling-2x1-fullres-top-1024x512.jpg",
     title: "Pois",
     ubicacion: "calle 13"
   },
   {
-    image: "https://dl1.cbsistatic.com/i/r/2018/08/09/b6ca69f8-f123-408c-9b1f-ea3f9cf1fb17/resize/620xauto/8787947d1d00135d3f2ed512e56bee72/concert-crowd.jpg",
+    image:
+      "https://dl1.cbsistatic.com/i/r/2018/08/09/b6ca69f8-f123-408c-9b1f-ea3f9cf1fb17/resize/620xauto/8787947d1d00135d3f2ed512e56bee72/concert-crowd.jpg",
     title: "Pois",
     ubicacion: "calle 13"
   },
   {
-    image: "https://cdn.thewirecutter.com/wp-content/uploads/2017/09/picnicsgrilling-2x1-fullres-top-1024x512.jpg",
+    image:
+      "https://cdn.thewirecutter.com/wp-content/uploads/2017/09/picnicsgrilling-2x1-fullres-top-1024x512.jpg",
     title: "Pois",
     ubicacion: "calle 13"
   },
   {
-    image: "https://dl1.cbsistatic.com/i/r/2018/08/09/b6ca69f8-f123-408c-9b1f-ea3f9cf1fb17/resize/620xauto/8787947d1d00135d3f2ed512e56bee72/concert-crowd.jpg",
+    image:
+      "https://dl1.cbsistatic.com/i/r/2018/08/09/b6ca69f8-f123-408c-9b1f-ea3f9cf1fb17/resize/620xauto/8787947d1d00135d3f2ed512e56bee72/concert-crowd.jpg",
     title: "Pois",
     ubicacion: "calle 13"
   },
   {
-    image: "https://cdn.thewirecutter.com/wp-content/uploads/2017/09/picnicsgrilling-2x1-fullres-top-1024x512.jpg",
+    image:
+      "https://cdn.thewirecutter.com/wp-content/uploads/2017/09/picnicsgrilling-2x1-fullres-top-1024x512.jpg",
     title: "Pois",
     ubicacion: "calle 13"
-  },
+  }
 ];
 
 const MainContainer = styled.div`
@@ -49,7 +59,7 @@ const MainContainer = styled.div`
 const SearchBar = styled.div`
   background-color: white;
   border-radius: 6px;
-  box-shadow: 0px 4px 7px #EEEEEE;
+  box-shadow: 0px 4px 7px #eeeeee;
   height: 25px;
   width: 300px;
 `;
@@ -59,14 +69,14 @@ const Header = styled.div`
   height: 50px;
   width: 100%;
   background-color: white;
-  border-color: #EEEEEE;
+  border-color: #eeeeee;
   border-bottom-width: 1px;
   border-bottom-style: solid;
   justify-content: center;
   align-items: center;
-  width:100%;
-  left:0;
-  top:0;
+  width: 100%;
+  left: 0;
+  top: 0;
   right: 0;
   z-index: 1000;
 `;
@@ -80,7 +90,7 @@ const SubTitle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-color: #EE993B;
+  border-color: #ee993b;
   border-bottom-width: 4px;
   border-bottom-style: solid;
   width: 100%;
@@ -89,22 +99,31 @@ const SubTitle = styled.div`
 `;
 
 class Events extends PureComponent {
-
   state = {
-    openOptions: false,
-  }
+    openOptions: false
+  };
 
-  render () {
+  render() {
+    console.log(this.props.data);
+
+    if (!this.props.data.todosLosEventos) {
+      return <div>loading...</div>;
+    }
+
     return (
       <MainContainer>
         <Modal
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
           open={this.state.openOptions}
-          onClose={()=>this.setState({openOptions: false})}
-          style={{display: 'flex', justifyContent: 'flex-end', paddingTop: 20}}
+          onClose={() => this.setState({ openOptions: false })}
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            paddingTop: 20
+          }}
         >
-          <ModalDescription/>
+          <ModalDescription modalInfo={this.state.modalInfo} />
         </Modal>
         <Header>
           <SearchBar>
@@ -112,62 +131,135 @@ class Events extends PureComponent {
               placeholder="Buscar"
               type="text"
               name="search"
-              style={{borderColor: 'transparent', width: '100%'}}
+              style={{ borderColor: "transparent", width: "100%" }}
             />
           </SearchBar>
         </Header>
         <SubTitle>
-          <p style={{fontSize: 14}}>Eventos</p>
+          <p style={{ fontSize: 14 }}>Eventos</p>
         </SubTitle>
         <MainBodyContainer>
-        <div style={{
-          backgroundColor: 'white', 
-          paddingLeft: 20, 
-          paddingRight: 20, 
-          marginBottom: 140,
-          marginTop: 10
-        }}>
-       {
-          data.map((item)=> {
-            return (
-              <div 
-                style={{
-                  height: 150,
-                  marginTop: 10,
-                  flexDirection: 'column', 
-                  alignItems: 'center', 
-                  justifyContent: 'flex-end', 
-                  marginBottom: 70,
-                }}>
-                <img style={{
-                  height: 150, 
-                  width: '100%', 
-                  borderTopLeftRadius: 10, 
-                  borderTopRightRadius: 10, 
-                  objectFit: 'cover'
-                  }} src={item.image}/>
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  borderBottomLeftRadius: 10, 
-                  borderBottomRightRadius: 10, 
-                  backgroundColor: '#E4E4E4',
-                  paddingLeft: 20,
-                  paddingTop: 5
-                  }}>
-                  <p style={{fontWeight: 'bold'}}>{item.title}
-                  <br/><span style={{color: 'black', fontWeight: 'normal'}}>{item.ubicacion}</span>
-                  </p>
+          <div
+            style={{
+              backgroundColor: "white",
+              paddingLeft: 20,
+              paddingRight: 20,
+              marginBottom: 140,
+              marginTop: 10
+            }}
+          >
+            {this.props.data.todosLosEventos.edges.map(item => {
+              return (
+                <div
+                  style={{
+                    height: 150,
+                    marginTop: 10,
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "flex-end",
+                    marginBottom: 70
+                  }}
+                  onClick={() =>
+                    this.setState({ openOptions: true, modalInfo: item })
+                  }
+                >
+                  <img
+                    style={{
+                      height: 150,
+                      width: "100%",
+                      borderTopLeftRadius: 10,
+                      borderTopRightRadius: 10,
+                      objectFit: "cover"
+                    }}
+                    src={item.node.urlImagenEvento && item.node.urlImagenEvento}
+                  />
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      borderBottomLeftRadius: 10,
+                      borderBottomRightRadius: 10,
+                      backgroundColor: "#E4E4E4",
+                      paddingLeft: 20,
+                      paddingTop: 5
+                    }}
+                  >
+                    <p style={{ fontWeight: "bold" }}>
+                      {item.node.titulo}
+                      <br />
+                      <span style={{ color: "black", fontWeight: "normal" }}>
+                        {item.node.puntoDeInteres.direccionCalle1}
+                      </span>
+                    </p>
+                  </div>
                 </div>
-              </div>
-            )
-          })
-        }
-        </div>
+              );
+            })}
+          </div>
         </MainBodyContainer>
       </MainContainer>
-    )
+    );
   }
 }
 
-export default Events;
+const query = gql`
+  query {
+    todosLosEventos {
+      edges {
+        node {
+          idEvento
+          titulo
+          concepto
+          fechaDeCreacion
+          fechaDeInicio
+          fechaDeCierre
+          urlImagenEvento
+          requiereBoletas
+          requiereCover
+          precio
+          multimedia
+          puntoDeInteres {
+            idPuntoDeInteres
+            nombre
+            direccionCalle1
+            direccionCalle2
+            descripcionLarga
+            descripcionCorta
+            latitud
+            longitud
+            confirmado
+            activo
+            fechaDeCreacion
+            foto
+            categorias {
+              edges {
+                node {
+                  id
+                  nombre
+                }
+              }
+            }
+            resena {
+              id
+            }
+            sugerencia {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export default compose(
+  graphql(query, {
+    options: props => {
+      return {
+        variables: {
+          nombre: ""
+        }
+      };
+    }
+  })
+)(Events);

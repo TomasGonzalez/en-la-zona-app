@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import logo from '../assets/main-logo.png';
-import styled from 'styled-components'
-import gql from 'graphql-tag';
-import { graphql } from 'react-apollo';
-import { compose } from 'redux';
+import React, { Component } from "react";
+import logo from "../assets/main-logo.png";
+import styled from "styled-components";
+import gql from "graphql-tag";
+import { graphql } from "react-apollo";
+import { compose } from "redux";
 import { Link } from "react-router-dom";
 
 const MainContainer = styled.div`
@@ -28,7 +28,7 @@ const InputField = styled.div`
 
 const Input = styled.input`
   width: 100%;
-  border-color: #90BEF8;
+  border-color: #90bef8;
   border-radius: 0;
   border-width: 0;
   border-bottom-width: 1px;
@@ -48,7 +48,7 @@ const GoogleLogo = styled.button`
   margin-top: 20px;
   border-width: 1px;
   border-style: solid;
-  border-color: #D3E7FB;
+  border-color: #d3e7fb;
   border-radius: 50px;
   width: 50px;
   height: 50px;
@@ -57,16 +57,16 @@ const GoogleLogo = styled.button`
 `;
 
 const GoogleLogoText = styled.p`
-  color: #E1D34A;
+  color: #e1d34a;
   font-weight: bold;
-`
+`;
 
 const LoginButton = styled.button`
   display: flex;
   margin-top: 20px;
   width: 100%;
   height: 50px;
-  background-color: #EE993B;
+  background-color: #ee993b;
   justify-content: center;
 `;
 
@@ -75,56 +75,72 @@ const LoginButtonText = styled.p`
 `;
 
 class Login extends Component {
+  state = {
+    email: null,
+    password: null,
+    error: null
+  };
 
+  handleSubmit = async () => {
+    console.log(this.state);
 
-  
-  render () {
+    try {
+      const response = await this.props.mutate({
+        variables: {
+          email: this.state.email,
+          clave: this.state.password
+        }
+      });
+      localStorage.setItem("user", response.data.autorizarUsuario.accessToken);
+      window.location = "/";
+    } catch (err) {
+      console.log("there was an error", err);
+      this.setState({ error: "Credenciales o email son incorrectos" });
+      return;
+    }
+  };
 
-    //this is how you get the data.
-    console.log('this is');
-    console.log(this.props.data);
-
+  render() {
     return (
       <MainContainer>
         <h1>En La Zona </h1>
-        <Logo src={logo}/>
+        <Logo src={logo} />
         <FormContainer>
           <InputField>
-            <p style={{color: "#9D9D9D"}}>Email</p> 
-            <Input type="text" name="fname"/>
+            <p style={{ color: "#9D9D9D" }}>Email</p>
+            <Input
+              onChange={text => this.setState({ email: text.target.value })}
+              type="email"
+            />
           </InputField>
           <InputField class="inputField">
-            <p style={{color: "#9D9D9D"}}>Password</p> 
-            <Input type="password" name="password"/>
+            <p style={{ color: "#9D9D9D" }}>Password</p>
+            <Input
+              onChange={text => this.setState({ password: text.target.value })}
+              type="password"
+            />
           </InputField>
-          <LoginButton onClick={()=>window.location = '/PuntosDeInteres'}>
+          <LoginButton onClick={this.handleSubmit}>
             <LoginButtonText>LOG IN</LoginButtonText>
           </LoginButton>
-          <Link to="/signUp/" style={{marginTop: 30}}>
+          <Link to="/signUp/" style={{ marginTop: 30 }}>
             registrar
           </Link>
+          <div style={{ color: "red", fontWeight: "bold", margintop: 20 }}>
+            {this.state.error && this.state.error}
+          </div>
         </FormContainer>
       </MainContainer>
     );
   }
 }
 
-const username = "Tomas";
-const password = "asdw";
-
-const query = gql`
-  query($password: String!, $username: String!) {
-    verificarUsuario(nombreDeUsuario: $username, clave: $password)
+const mutation = gql`
+  mutation($clave: String, $email: String) {
+    autorizarUsuario(clave: $clave, email: $email) {
+      accessToken
+    }
   }
 `;
 
-export default compose(
-  graphql(query, {
-    options: props => ({
-      variables: {
-        username: username,
-        password: password
-      },
-    })
-  }),
-)(Login);
+export default compose(graphql(mutation))(Login);
