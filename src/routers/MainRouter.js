@@ -20,6 +20,7 @@ import EditarPerfil from "../screens/EditarPerfil";
 import ResenasPuntosDeInteres from "../screens/ResenasPuntosDeInteres";
 import DetalleMomentoPuntoDeInteres from "../screens/DetalleMomentoPuntoDeInteres";
 import EventosPuntosDeInteres from "../screens/EventoPuntosDeInteres";
+import AddNewMoment from "../screens/AddNewMoment";
 
 const dontNav = [""];
 
@@ -102,6 +103,7 @@ class MainRouter extends PureComponent {
             path="/EventosPuntosDeInteres"
             component={EventosPuntosDeInteres}
           />
+          <Route exact path="/AddNewMoment" component={AddNewMoment} />
         </div>
       </Router>
     );

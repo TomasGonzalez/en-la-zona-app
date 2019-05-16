@@ -16,7 +16,7 @@ import { throwServerError } from "apollo-link-http-common";
 
 const MainContainer = styled.div`
   min-height: 100vh;
-  background-color: #c3dffa;
+  background-color: #ffffff;
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 60px;
@@ -92,7 +92,7 @@ class DetalleMomentoPuntoDeInteres extends PureComponent {
                     height: 30,
                     width: 30,
                     borderRadius: 30,
-                    backgroundColor: "#C3DFFA"
+                    backgroundColor: "#ffffff"
                   }}
                   src={item.usuario.urlFotoMiniatura}
                 />
@@ -102,7 +102,7 @@ class DetalleMomentoPuntoDeInteres extends PureComponent {
                     height: 30,
                     width: 30,
                     borderRadius: 30,
-                    backgroundColor: "#C3DFFA",
+                    backgroundColor: "#ffffff",
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center"
@@ -129,7 +129,7 @@ class DetalleMomentoPuntoDeInteres extends PureComponent {
               padding: 10
             }}
           >
-            <div>En la zona</div>
+            <div />
             <div
               style={{
                 display: "flex",
@@ -152,7 +152,14 @@ class DetalleMomentoPuntoDeInteres extends PureComponent {
               </div>
             </div>
           </div>
-          <div style={{ backgroundColor: "#C3DFFA" }}>{item.descripcion}</div>
+          <div
+            style={{
+              backgroundColor: "#F0F0F0",
+              padding: 10
+            }}
+          >
+            {item.descripcion}
+          </div>
           <div style={{ display: "flex", flexDirection: "row" }}>
             <input
               value={this.state.newComment}
@@ -173,7 +180,7 @@ class DetalleMomentoPuntoDeInteres extends PureComponent {
             return (
               <div
                 style={{
-                  backgroundColor: "#C3DFFA",
+                  backgroundColor: "#ffffff",
                   padding: 10,
                   display: "flex",
                   flexDirection: "row",
