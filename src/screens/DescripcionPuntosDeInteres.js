@@ -71,8 +71,6 @@ class InterestDescription extends PureComponent {
       );
     }
 
-    console.log(this.props.data);
-
     return (
       <MainContainer>
         <ActiveTabs>
@@ -86,7 +84,15 @@ class InterestDescription extends PureComponent {
           >
             Momentos
           </div>
-          <div>Eventos</div>
+          <div
+            onClick={() =>
+              (window.location = `/EventosPuntosDeInteres?id=${
+                qs.parse(window.location.search).id
+              }`)
+            }
+          >
+            Eventos
+          </div>
         </ActiveTabs>
         <TitleBar>
           <p

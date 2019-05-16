@@ -46,7 +46,15 @@ class MomentosPDI extends PureComponent {
             Descripcion
           </div>
           <Active>Momentos</Active>
-          <div>Eventos</div>
+          <div
+            onClick={() =>
+              (window.location = `/EventosPuntosDeInteres?id=${
+                qs.parse(window.location.search).id
+              }`)
+            }
+          >
+            Eventos
+          </div>
         </ActiveTabs>
         {this.props.data.momentos.map(item => {
           return (

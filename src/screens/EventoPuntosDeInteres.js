@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Modal from "@material-ui/core/Modal";
 import ModalDescription from "../components/ModalDescription";
 
+import qs from "query-string";
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 import { compose } from "redux";
@@ -59,7 +60,7 @@ const SubTitle = styled.div`
   padding-top: 15px;
 `;
 
-class Events extends PureComponent {
+class EventoPuntosDeinteres extends PureComponent {
   state = {
     openOptions: false
   };
@@ -68,8 +69,6 @@ class Events extends PureComponent {
     if (!this.props.data.eventos) {
       return <div>loading...</div>;
     }
-
-    console.log(this.props.data.eventos);
 
     return (
       <MainContainer>
@@ -168,8 +167,13 @@ class Events extends PureComponent {
 }
 
 const query = gql`
-  query($nombre: String!) {
-    eventos(titulo: $nombre, pagina: 1, porPagina: 20) {
+  query($nombre: String!, $idPuntoDeInteres: Int!) {
+    eventos(
+      titulo: $nombre
+      pagina: 1
+      porPagina: 20
+      idPuntoDeInteres: $idPuntoDeInteres
+    ) {
       idEvento
       titulo
       concepto
@@ -221,9 +225,10 @@ export default compose(
     options: props => {
       return {
         variables: {
-          nombre: ""
+          nombre: "",
+          idPuntoDeInteres: qs.parse(window.location.search).id
         }
       };
     }
   })
-)(Events);
+)(EventoPuntosDeinteres);

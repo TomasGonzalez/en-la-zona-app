@@ -12,9 +12,10 @@ import { compose } from "redux";
 import MdPerson from "react-ionicons/lib/MdPerson";
 
 import Arrow from "react-ionicons/lib/MdArrowRoundForward";
+import { throwServerError } from "apollo-link-http-common";
 
 const MainContainer = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   background-color: #c3dffa;
   padding-left: 10px;
   padding-right: 10px;
@@ -39,7 +40,31 @@ const Header = styled.div`
 
 class DetalleMomentoPuntoDeInteres extends PureComponent {
   state = {
-    newComment: null
+    newComment: null,
+    error: null
+  };
+
+  handleSubmitComment = async () => {
+    if (this.state.newComment) {
+      try {
+        const response = await this.props.mutate({
+          variables: {
+            contenido: this.state.newComment,
+            idMomentoPadre: qs.parse(window.location.search).id,
+            token: localStorage.getItem("user")
+          }
+        });
+
+        this.setState({ newComment: "" });
+        this.props.data.refetch();
+        console.log(response);
+      } catch (err) {
+        console.log("there was an error", err);
+        return;
+      }
+    } else {
+      this.setState({ error: "you need to add a comment" });
+    }
   };
 
   render() {
@@ -47,12 +72,12 @@ class DetalleMomentoPuntoDeInteres extends PureComponent {
       return <div>Loading...</div>;
     }
 
-    console.log(this.props.data.momentos[0]);
     const item = this.props.data.momentos[0];
-    console.log(moment(item.fechaDeCreacion).fromNow());
 
     return (
       <MainContainer>
+        <div style={{ color: "red" }}>{this.state.error}</div>
+
         <ItemContainer>
           <Header>
             <div
@@ -127,55 +152,71 @@ class DetalleMomentoPuntoDeInteres extends PureComponent {
               </div>
             </div>
           </div>
-          <div style={{ backgroundColor: "#4797F4" }}>{item.descripcion}</div>
+          <div style={{ backgroundColor: "#C3DFFA" }}>{item.descripcion}</div>
           <div style={{ display: "flex", flexDirection: "row" }}>
-            <input placeholder="Type your comment" style={{ width: "100%" }} />
-            <div
-              onClick={() => {
-                console.log("good mithical morning");
+            <input
+              value={this.state.newComment}
+              onChange={text => {
+                this.setState({ newComment: text.target.value });
               }}
+              placeholder="Type your comment"
+              style={{ width: "100%" }}
+            />
+            <div
+              onClick={this.handleSubmitComment}
               style={{ paddingLeft: "10px", paddingRight: "10px" }}
             >
               <Arrow fontSize="20px" color="#90BEF8" />
             </div>
           </div>
-          {item.comentarios.edges.map(() => {
+          {item.comentarios.edges.map(comment => {
             return (
               <div
                 style={{
-                  backgroundColor: "#4797F4",
+                  backgroundColor: "#C3DFFA",
                   padding: 10,
                   display: "flex",
-                  flexDirection: "row"
+                  flexDirection: "row",
+                  justifyContent: "space-between"
                 }}
               >
-                {item.usuario.urlFotoMiniatura ? (
-                  <img
-                    alt=""
-                    style={{
-                      height: 30,
-                      width: 30,
-                      borderRadius: 30,
-                      backgroundColor: "#C3DFFA"
-                    }}
-                    src={item.usuario.urlFotoMiniatura}
-                  />
-                ) : (
-                  <div
-                    style={{
-                      height: 30,
-                      width: 30,
-                      borderRadius: 30,
-                      backgroundColor: "#C3DFFA",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center"
-                    }}
-                  >
-                    <MdPerson fontSize="20px" color="#90BEF8" />
+                <div style={{ display: "flex", flexDirection: "row" }}>
+                  {item.usuario.urlFotoMiniatura ? (
+                    <img
+                      alt=""
+                      style={{
+                        height: 30,
+                        width: 30,
+                        borderRadius: 30,
+                        backgroundColor: "#C3DFFA"
+                      }}
+                      src={item.usuario.urlFotoMiniatura}
+                    />
+                  ) : (
+                    <div
+                      style={{
+                        height: 30,
+                        width: 30,
+                        borderRadius: 30,
+                        backgroundColor: "#C3DFFA",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center"
+                      }}
+                    >
+                      <MdPerson fontSize="20px" color="#90BEF8" />
+                    </div>
+                  )}
+                  <div style={{ paddingLeft: 10 }}>
+                    <div>
+                      @
+                      {comment.node.usuario.nombreDeUsuario
+                        ? comment.node.usuario.nombreDeUsuario
+                        : "The man with no name"}
+                    </div>
+                    {comment.node.contenido}
                   </div>
-                )}
-                <div>@ helel</div>
+                </div>
               </div>
             );
           })}
@@ -197,6 +238,12 @@ const query = gql`
         edges {
           node {
             idComentario
+            contenido
+            usuario {
+              email
+              nombreDeUsuario
+              urlFotoMiniatura
+            }
           }
         }
       }
@@ -210,6 +257,20 @@ const query = gql`
   }
 `;
 
+const mutation = gql`
+  mutation($contenido: String!, $idMomentoPadre: Int!, $token: String!) {
+    crearComentario(
+      contenido: $contenido
+      idMomentoPadre: $idMomentoPadre
+      token: $token
+    ) {
+      comentario {
+        idComentario
+      }
+    }
+  }
+`;
+
 export default compose(
   graphql(query, {
     options: props => {
@@ -219,5 +280,6 @@ export default compose(
         }
       };
     }
-  })
+  }),
+  graphql(mutation)
 )(DetalleMomentoPuntoDeInteres);
