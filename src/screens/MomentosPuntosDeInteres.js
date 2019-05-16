@@ -4,11 +4,10 @@ import IosThumbsUp from "react-ionicons/lib/IosThumbsUp";
 import IosThumbsDown from "react-ionicons/lib/IosThumbsDown";
 import styled from "styled-components";
 import qs from "query-string";
-
-// import qs from "query-string";
-// import gql from "graphql-tag";
-// import { graphql } from "react-apollo";
-// import { compose } from "redux";
+import gql from "graphql-tag";
+import { graphql } from "react-apollo";
+import { compose } from "redux";
+import MdPerson from "react-ionicons/lib/MdPerson";
 
 const ActiveTabs = styled.div`
   display: flex;
@@ -28,6 +27,12 @@ const Active = styled.div`
 
 class MomentosPDI extends PureComponent {
   render() {
+    if (!this.props.data.momentos) {
+      return <div>Loading...</div>;
+    }
+
+    console.log(this.props.data.momentos);
+
     return (
       <div>
         <ActiveTabs>
@@ -43,7 +48,7 @@ class MomentosPDI extends PureComponent {
           <Active>Momentos</Active>
           <div>Eventos</div>
         </ActiveTabs>
-        {mData.map(item => {
+        {this.props.data.momentos.map(item => {
           return (
             <div>
               <div style={{ height: 150, width: "100%" }}>
@@ -54,7 +59,7 @@ class MomentosPDI extends PureComponent {
                     width: "100%",
                     objectFit: "cover"
                   }}
-                  src={item.image}
+                  src={item.multimedia}
                 />
                 <div
                   style={{
@@ -66,18 +71,45 @@ class MomentosPDI extends PureComponent {
                   <div
                     style={{
                       display: "flex",
-                      borderRadius: 35,
-                      backgroundColor: "#4B98F4",
-                      height: 30,
-                      width: 30,
+                      flexDirection: "row",
+                      backgroundColor: "white",
                       justifyContent: "center",
                       alignItems: "center",
-                      margin: 10
+                      padding: 10
                     }}
                   >
-                    <IosPerson color={"white"} size={20} />
+                    {item.usuario.urlFotoMiniatura ? (
+                      <img
+                        alt=""
+                        style={{
+                          height: 30,
+                          width: 30,
+                          borderRadius: 30,
+                          backgroundColor: "#C3DFFA"
+                        }}
+                        src={item.usuario.urlFotoMiniatura}
+                      />
+                    ) : (
+                      <div
+                        style={{
+                          height: 30,
+                          width: 30,
+                          borderRadius: 30,
+                          backgroundColor: "#C3DFFA",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center"
+                        }}
+                      >
+                        <MdPerson fontSize="20px" color="#90BEF8" />
+                      </div>
+                    )}
+                    <p style={{ color: "#4B98F4" }}>
+                      @
+                      {item.usuario.nombreDeUsuario &&
+                        item.usuario.nombreDeUsuario}
+                    </p>
                   </div>
-                  <p style={{ color: "#4B98F4" }}>@{item.user}</p>
                 </div>
                 <div
                   style={{
@@ -105,7 +137,7 @@ class MomentosPDI extends PureComponent {
                   <div style={{ display: "flex" }}>
                     <IosThumbsDown color={"#EB4826"} />
                     <p style={{ fontSize: 8, color: "#EB4826", marginTop: 5 }}>
-                      {item.likes}
+                      {item.dislikes}
                     </p>
                   </div>
                 </div>
@@ -117,7 +149,7 @@ class MomentosPDI extends PureComponent {
                   padding: 10
                 }}
               >
-                <p>{item.coment}</p>
+                <p>{item.descripcion}</p>
               </div>
             </div>
           );
@@ -127,7 +159,33 @@ class MomentosPDI extends PureComponent {
   }
 }
 
-export default MomentosPDI;
+const query = gql`
+  query($idPuntoDeInteres: Int!) {
+    momentos(idPuntoDeInteres: $idPuntoDeInteres) {
+      usuario {
+        email
+        nombreDeUsuario
+        urlFotoMiniatura
+      }
+      multimedia
+      descripcion
+      likes
+      dislikes
+    }
+  }
+`;
+
+export default compose(
+  graphql(query, {
+    options: props => {
+      return {
+        variables: {
+          idPuntoDeInteres: qs.parse(window.location.search).id
+        }
+      };
+    }
+  })
+)(MomentosPDI);
 
 const mData = [
   {

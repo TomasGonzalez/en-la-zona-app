@@ -6,6 +6,7 @@ import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 import { compose } from "redux";
 import { geolocated } from "react-geolocated";
+import { log } from "util";
 
 const MainContainer = styled.div`
   display: flex;
@@ -93,6 +94,10 @@ class PuntosDeInteres extends Component {
     if (!this.props.data.puntosDeInteres) {
       return <div>Loading</div>;
     }
+
+    // if (!this.props.isGeolocationEnabled) {
+    //   return <div>turn the location please</div>;
+    // }
 
     return (
       <MainContainer>
@@ -247,6 +252,12 @@ const query = gql`
 `;
 
 export default compose(
+  geolocated({
+    positionOptions: {
+      enableHighAccuracy: false
+    },
+    userDecisionTimeout: 5000
+  }),
   graphql(query, {
     options: props => {
       return {
