@@ -104,11 +104,11 @@ class Events extends PureComponent {
   };
 
   render() {
-    console.log(this.props.data);
-
-    if (!this.props.data.todosLosEventos) {
+    if (!this.props.data.eventos) {
       return <div>loading...</div>;
     }
+
+    console.log(this.props.data.eventos);
 
     return (
       <MainContainer>
@@ -128,6 +128,9 @@ class Events extends PureComponent {
         <Header>
           <SearchBar>
             <input
+              onChange={item =>
+                this.props.data.refetch({ nombre: item.target.value })
+              }
               placeholder="Buscar"
               type="text"
               name="search"
@@ -148,7 +151,7 @@ class Events extends PureComponent {
               marginTop: 10
             }}
           >
-            {this.props.data.todosLosEventos.edges.map(item => {
+            {this.props.data.eventos.map(item => {
               return (
                 <div
                   style={{
@@ -171,7 +174,7 @@ class Events extends PureComponent {
                       borderTopRightRadius: 10,
                       objectFit: "cover"
                     }}
-                    src={item.node.urlImagenEvento && item.node.urlImagenEvento}
+                    src={item.urlImagenEvento && item.urlImagenEvento}
                   />
                   <div
                     style={{
@@ -185,10 +188,11 @@ class Events extends PureComponent {
                     }}
                   >
                     <p style={{ fontWeight: "bold" }}>
-                      {item.node.titulo}
+                      {item.titulo}
                       <br />
                       <span style={{ color: "black", fontWeight: "normal" }}>
-                        {item.node.puntoDeInteres.direccionCalle1}
+                        {item.puntoDeInteres &&
+                          item.puntoDeInteres.direccionCalle1}
                       </span>
                     </p>
                   </div>
@@ -203,49 +207,48 @@ class Events extends PureComponent {
 }
 
 const query = gql`
-  query {
-    todosLosEventos {
-      edges {
-        node {
-          idEvento
-          titulo
-          concepto
-          fechaDeCreacion
-          fechaDeInicio
-          fechaDeCierre
-          urlImagenEvento
-          requiereBoletas
-          requiereCover
-          precio
-          multimedia
-          puntoDeInteres {
-            idPuntoDeInteres
-            nombre
-            direccionCalle1
-            direccionCalle2
-            descripcionLarga
-            descripcionCorta
-            latitud
-            longitud
-            confirmado
-            activo
-            fechaDeCreacion
-            foto
-            categorias {
-              edges {
-                node {
-                  id
-                  nombre
-                }
-              }
-            }
-            resena {
-              id
-            }
-            sugerencia {
-              id
+  query($nombre: String!) {
+    eventos(titulo: $nombre, pagina: 1, porPagina: 20) {
+      idEvento
+      titulo
+      concepto
+      fechaDeCreacion
+      fechaDeInicio
+      fechaDeCierre
+      urlImagenEvento
+      requiereBoletas
+      requiereCover
+      precio
+      multimedia
+      puntoDeInteres {
+        idPuntoDeInteres
+        nombre
+        direccionCalle1
+        direccionCalle2
+        descripcionLarga
+        descripcionCorta
+        latitud
+        longitud
+        confirmado
+        activo
+        fechaDeCreacion
+        foto
+        categorias {
+          edges {
+            node {
+              nombre
             }
           }
+        }
+        resenas {
+          edges {
+            node {
+              idResena
+            }
+          }
+        }
+        sugerencia {
+          id
         }
       }
     }

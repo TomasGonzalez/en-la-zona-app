@@ -16,6 +16,7 @@ import SideBar from "../components/SideBar";
 import Mapa from "../screens/Mapa";
 import DescripcionPuntosDeInteres from "../screens/DescripcionPuntosDeInteres";
 import MomentosPuntosDeInteres from "../screens/MomentosPuntosDeInteres";
+import EditarPerfil from "../screens/EditarPerfil";
 
 const dontNav = [""];
 
@@ -82,6 +83,7 @@ class MainRouter extends PureComponent {
             path="/MomentosPuntosDeInteres/"
             component={MomentosPuntosDeInteres}
           />
+          <Route exact path="/EditarPerfil" component={EditarPerfil} />
         </div>
       </Router>
     );

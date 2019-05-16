@@ -16,7 +16,9 @@ const MainContainer = styled.div`
 const dontNav = [
   "/Login",
   "/DescripcionPuntosDeInteres",
-  "/MomentosPuntosDeInteres"
+  "/MomentosPuntosDeInteres",
+  "/Events",
+  "/EditarPerfil"
 ];
 
 class AppBarComponent extends PureComponent {

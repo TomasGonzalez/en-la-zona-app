@@ -5,6 +5,7 @@ import qs from "query-string";
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 import { compose } from "redux";
+import MdPerson from "react-ionicons/lib/MdPerson";
 
 const TitleBar = styled.div`
   display: flex;
@@ -24,10 +25,10 @@ const MainContainer = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  background-color: #f2f9fe;
+  background-color: #f2f2f2;
+  height: 100vh;
   padding-left: 20px;
   padding-right: 20px;
-  height: 100%;
   padding-bottom: 10px;
   overflow: hidden;
 `;
@@ -67,6 +68,9 @@ class InterestDescription extends PureComponent {
         <div style={{ backgroundColor: "white", height: "100%" }}>Loading</div>
       );
     }
+
+    console.log(this.props.data);
+
     return (
       <MainContainer>
         <ActiveTabs>
@@ -162,41 +166,76 @@ class InterestDescription extends PureComponent {
             <MdArrowForward fontSize={15} color="white" />
           </div>
         </div>
-        {/* <div style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          backgroundColor: 'white', 
-          alignItems: 'center',
-          marginTop: 20, 
-          padding: 10,
-          }}>
-          <div style={{flex: 1}}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            backgroundColor: "white",
+            alignItems: "center",
+            marginTop: 20,
+            padding: 10
+          }}
+        >
+          <div style={{ flex: 1 }}>
             <div>
               <p>Reseña</p>
             </div>
-            <div style={{display: 'flex', flexDirection: 'row'}}>
-              <div style={{height: 30, width: 30, borderRadius: 30, backgroundColor: '#C3DFFA'}}/>
-              <div style={{marginLeft: 10, height: 30, width: 30, borderRadius: 30, backgroundColor: '#C3DFFA'}}/>
-              <div style={{marginLeft: 10, height: 30, width: 30, borderRadius: 30, backgroundColor: '#C3DFFA'}}/>
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              {this.props.data.puntoDeInteres.resenas.edges
+                .slice(0, 3)
+                .map(item => {
+                  if (item.node.usuario.urlFotoMiniatura) {
+                    return (
+                      <img
+                        alt=""
+                        style={{
+                          height: 30,
+                          width: 30,
+                          borderRadius: 30,
+                          backgroundColor: "#C3DFFA"
+                        }}
+                        src={item.node.usuario.urlFotoMiniatura}
+                      />
+                    );
+                  }
+
+                  return (
+                    <div
+                      style={{
+                        height: 30,
+                        width: 30,
+                        borderRadius: 30,
+                        backgroundColor: "#C3DFFA",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center"
+                      }}
+                    >
+                      <MdPerson fontSize="20px" color="#90BEF8" />
+                    </div>
+                  );
+                })}
             </div>
           </div>
           <div>
-            <p style={{fontSize: 9}}>1200 reviews</p>
-            <div style={{ 
-              display: 'flex',
-              backgroundColor: '#4797F4',
-              height: 30,
-              paddingTop: 10,
-              justifyContent: 'center',
-              alignItems: 'center',
-              borderRadius: 15,
-              color: 'white'
-            }}>
-              <p style={{paddingLeft: 10, paddingRight: 10}}>ver mas</p>
+            <p style={{ fontSize: 9 }}>1200 reviews</p>
+            <div
+              style={{
+                display: "flex",
+                backgroundColor: "#4797F4",
+                height: 30,
+                paddingTop: 10,
+                justifyContent: "center",
+                alignItems: "center",
+                borderRadius: 15,
+                color: "white"
+              }}
+            >
+              <p style={{ paddingLeft: 10, paddingRight: 10 }}>ver mas</p>
             </div>
           </div>
-        </div> */}
+        </div>
       </MainContainer>
     );
   }
@@ -211,6 +250,32 @@ const query = gql`
       longitud
       direccionCalle1
       descripcionCorta
+      resenas {
+        edges {
+          node {
+            idResena
+            idResena
+            idUsuario
+            idPuntoDeInteres
+            contenido
+            fechaDeCreacion
+            fueEditada
+            idCalificacion
+            calificacion {
+              idCalificacion
+              valor
+            }
+            usuario {
+              idUsuario
+              primerNombre
+              segundoNombre
+              apellido
+              nombreDeUsuario
+              urlFotoMiniatura
+            }
+          }
+        }
+      }
     }
   }
 `;
