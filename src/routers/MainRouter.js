@@ -18,6 +18,7 @@ import DescripcionPuntosDeInteres from "../screens/DescripcionPuntosDeInteres";
 import MomentosPuntosDeInteres from "../screens/MomentosPuntosDeInteres";
 import EditarPerfil from "../screens/EditarPerfil";
 import ResenasPuntosDeInteres from "../screens/ResenasPuntosDeInteres";
+import DetalleMomentoPuntoDeInteres from "../screens/DetalleMomentoPuntoDeInteres";
 
 const dontNav = [""];
 
@@ -89,6 +90,11 @@ class MainRouter extends PureComponent {
             exact
             path="/ResenasPuntosDeInteres"
             component={ResenasPuntosDeInteres}
+          />
+          <Route
+            exact
+            path="/DetalleMomentoPuntoDeInteres"
+            component={DetalleMomentoPuntoDeInteres}
           />
         </div>
       </Router>

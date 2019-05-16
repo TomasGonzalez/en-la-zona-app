@@ -51,7 +51,14 @@ class MomentosPDI extends PureComponent {
         {this.props.data.momentos.map(item => {
           return (
             <div>
-              <div style={{ height: 150, width: "100%" }}>
+              <div
+                style={{ height: 150, width: "100%" }}
+                onClick={() =>
+                  (window.location = `/DetalleMomentoPuntoDeInteres?id=${
+                    item.idMomento
+                  }`)
+                }
+              >
                 <img
                   style={{
                     position: "absolute",
@@ -167,6 +174,7 @@ const query = gql`
         nombreDeUsuario
         urlFotoMiniatura
       }
+      idMomento
       multimedia
       descripcion
       likes
@@ -186,48 +194,3 @@ export default compose(
     }
   })
 )(MomentosPDI);
-
-const mData = [
-  {
-    image:
-      "https://www.enterwine.com/media/catalog/product/cache/1/thumbnail/700x/17f82f742ffe127f42dca9de82fb58b1/b/a/barcelo-imperial.jpg",
-    likes: 20,
-    dislikes: 2,
-    coment:
-      "hello ma man lorem isps da asdasd aspdij askdnalknio sa iasdoiijasd",
-    user: "jone"
-  },
-  {
-    image:
-      "https://www.enterwine.com/media/catalog/product/cache/1/thumbnail/700x/17f82f742ffe127f42dca9de82fb58b1/b/a/barcelo-imperial.jpg",
-    likes: 20,
-    dislikes: 2,
-    coment: "hello ma man lorem askdnalknio sa iasdoiijasd",
-    user: "jone"
-  },
-  {
-    image:
-      "https://www.enterwine.com/media/catalog/product/cache/1/thumbnail/700x/17f82f742ffe127f42dca9de82fb58b1/b/a/barcelo-imperial.jpg",
-    likes: 20,
-    dislikes: 2,
-    coment: "hello ma asdoiijasd",
-    user: "jone"
-  },
-  {
-    image:
-      "https://www.enterwine.com/media/catalog/product/cache/1/thumbnail/700x/17f82f742ffe127f42dca9de82fb58b1/b/a/barcelo-imperial.jpg",
-    likes: 20,
-    dislikes: 2,
-    coment: "hello ma man askdnalknio sa iasdoiijasd",
-    user: "jone"
-  },
-  {
-    image:
-      "https://www.enterwine.com/media/catalog/product/cache/1/thumbnail/700x/17f82f742ffe127f42dca9de82fb58b1/b/a/barcelo-imperial.jpg",
-    likes: 20,
-    dislikes: 2,
-    coment:
-      "hello ma man lorem isps da asdasd aspdij askdnalknio sa iasdoiijasd",
-    user: "jone"
-  }
-];
