@@ -57,9 +57,9 @@ class MomentosPDI extends PureComponent {
               <div
                 style={{ height: 150, width: "100%" }}
                 onClick={() =>
-                  (window.location = `/DetalleMomentoPuntoDeInteres?id=${
-                    item.idMomento
-                  }`)
+                  this.props.history.push(
+                    `/DetalleMomentoPuntoDeInteres?id=${item.idMomento}`
+                  )
                 }
               >
                 <img

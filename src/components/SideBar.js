@@ -65,7 +65,7 @@ class SideBar extends PureComponent {
   render() {
     return (
       <MainContainer>
-        <ProfileImage onClick={() => (window.location = "/EditarPerfil")}>
+        <ProfileImage onClick={() => this.props.history.push("/EditarPerfil")}>
           <div style={{ backgroundColor: "white", borderRadius: 15 }}>
             <MdPerson fontSize="60px" size={"large"} />
           </div>

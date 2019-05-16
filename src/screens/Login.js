@@ -92,7 +92,7 @@ class Login extends Component {
         }
       });
       localStorage.setItem("user", response.data.autorizarUsuario.accessToken);
-      window.location = "/";
+      this.props.history.push("/");
     } catch (err) {
       console.log("there was an error", err);
       this.setState({ error: "Credenciales o email son incorrectos" });

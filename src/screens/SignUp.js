@@ -105,7 +105,7 @@ class SignUp extends Component {
           "user",
           response.data.crearUsuarioActivo.accessToken
         );
-        window.location = "/";
+        this.props.history.push("/");
       } catch (err) {
         console.log("there was an error", err);
         return;

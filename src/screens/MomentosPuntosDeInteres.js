@@ -38,9 +38,11 @@ class MomentosPDI extends PureComponent {
         <ActiveTabs>
           <div
             onClick={() =>
-              (window.location = `/DescripcionPuntosDeInteres?id=${
-                qs.parse(window.location.search).id
-              }`)
+              this.props.history.push(
+                `/DescripcionPuntosDeInteres?id=${
+                  qs.parse(window.location.search).id
+                }`
+              )
             }
           >
             Descripcion
@@ -48,9 +50,11 @@ class MomentosPDI extends PureComponent {
           <Active>Momentos</Active>
           <div
             onClick={() =>
-              (window.location = `/EventosPuntosDeInteres?id=${
-                qs.parse(window.location.search).id
-              }`)
+              this.props.history.push(
+                `/EventosPuntosDeInteres?id=${
+                  qs.parse(window.location.search).id
+                }`
+              )
             }
           >
             Eventos
@@ -62,9 +66,9 @@ class MomentosPDI extends PureComponent {
               <div
                 style={{ height: 150, width: "100%" }}
                 onClick={() =>
-                  (window.location = `/DetalleMomentoPuntoDeInteres?id=${
-                    item.idMomento
-                  }`)
+                  this.props.history.push(
+                    `/DetalleMomentoPuntoDeInteres?id=${item.idMomento}`
+                  )
                 }
               >
                 <img

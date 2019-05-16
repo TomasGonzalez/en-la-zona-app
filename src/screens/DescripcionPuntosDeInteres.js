@@ -77,18 +77,22 @@ class InterestDescription extends PureComponent {
           <Active>Descripcion</Active>
           <div
             onClick={() =>
-              (window.location = `/MomentosPuntosDeInteres?id=${
-                qs.parse(window.location.search).id
-              }`)
+              this.props.history.push(
+                `/MomentosPuntosDeInteres?id=${
+                  qs.parse(window.location.search).id
+                }`
+              )
             }
           >
             Momentos
           </div>
           <div
             onClick={() =>
-              (window.location = `/EventosPuntosDeInteres?id=${
-                qs.parse(window.location.search).id
-              }`)
+              this.props.history.push(
+                `/EventosPuntosDeInteres?id=${
+                  qs.parse(window.location.search).id
+                }`
+              )
             }
           >
             Eventos
@@ -230,9 +234,11 @@ class InterestDescription extends PureComponent {
             <p style={{ fontSize: 9 }}>1200 reviews</p>
             <div
               onClick={() =>
-                (window.location = `/ResenasPuntosDeInteres?id=${
-                  qs.parse(window.location.search).id
-                }`)
+                this.props.history.push(
+                  `/ResenasPuntosDeInteres?id=${
+                    qs.parse(window.location.search).id
+                  }`
+                )
               }
               style={{
                 display: "flex",

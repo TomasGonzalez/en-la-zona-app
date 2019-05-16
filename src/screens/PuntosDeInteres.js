@@ -145,9 +145,9 @@ class PuntosDeInteres extends Component {
               return (
                 <div
                   onClick={() =>
-                    (window.location = `DescripcionPuntosDeInteres?id=${
-                      item.idPuntoDeInteres
-                    }`)
+                    this.props.history.push(
+                      `DescripcionPuntosDeInteres?id=${item.idPuntoDeInteres}`
+                    )
                   }
                   style={{
                     height: 150,
