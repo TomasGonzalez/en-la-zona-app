@@ -9155,6 +9155,13 @@ react-event-listener@^0.6.0, react-event-listener@^0.6.2:
     prop-types "^15.6.0"
     warning "^4.0.1"
 
+react-geolocated@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/react-geolocated/-/react-geolocated-2.4.1.tgz#71b270b3244ad36ace9b872b3e2b9119162566e4"
+  integrity sha512-F3SsRzZQe0pKk+QKYUkETxxjBnOsMEe7Mytvc0qT4OmlvaZR874u1YjYkeFapkBIyitGScChghsEFx+WBZlDnw==
+  dependencies:
+    prop-types "^15.5.8"
+
 react-google-maps@^9.4.5:
   version "9.4.5"
   resolved "https://registry.yarnpkg.com/react-google-maps/-/react-google-maps-9.4.5.tgz#920c199bdc925e0ce93880edffb09428d263aafa"

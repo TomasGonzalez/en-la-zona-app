@@ -5,6 +5,7 @@ import ModalDescription from "../components/ModalDescription";
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 import { compose } from "redux";
+import { geolocated } from "react-geolocated";
 
 const MainContainer = styled.div`
   display: flex;

@@ -5,6 +5,11 @@ import IosThumbsDown from "react-ionicons/lib/IosThumbsDown";
 import styled from "styled-components";
 import qs from "query-string";
 
+// import qs from "query-string";
+// import gql from "graphql-tag";
+// import { graphql } from "react-apollo";
+// import { compose } from "redux";
+
 const ActiveTabs = styled.div`
   display: flex;
   width: 100%;

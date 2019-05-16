@@ -1,10 +1,12 @@
 import React, { PureComponent } from "react";
 import styled from "styled-components";
 import MdArrowForward from "react-ionicons/lib/MdArrowForward";
+
 import qs from "query-string";
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 import { compose } from "redux";
+
 import MdPerson from "react-ionicons/lib/MdPerson";
 
 const TitleBar = styled.div`
@@ -221,6 +223,11 @@ class InterestDescription extends PureComponent {
           <div>
             <p style={{ fontSize: 9 }}>1200 reviews</p>
             <div
+              onClick={() =>
+                (window.location = `/ResenasPuntosDeInteres?id=${
+                  qs.parse(window.location.search).id
+                }`)
+              }
               style={{
                 display: "flex",
                 backgroundColor: "#4797F4",

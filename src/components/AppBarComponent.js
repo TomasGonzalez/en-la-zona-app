@@ -18,7 +18,8 @@ const dontNav = [
   "/DescripcionPuntosDeInteres",
   "/MomentosPuntosDeInteres",
   "/Events",
-  "/EditarPerfil"
+  "/EditarPerfil",
+  "/ResenasPuntosDeInteres"
 ];
 
 class AppBarComponent extends PureComponent {
