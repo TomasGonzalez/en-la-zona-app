@@ -5,8 +5,8 @@ import ModalDescription from "../components/ModalDescription";
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 import { compose } from "redux";
-import { geolocated } from "react-geolocated";
-import Footer from "../components/Footer";
+import { log } from "util";
+import qs from "query-string";
 
 const MainContainer = styled.div`
   display: flex;
@@ -59,6 +59,20 @@ const SubTitle = styled.div`
   padding-top: 15px;
 `;
 
+const Footer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  background-color: white;
+  height: 60px;
+  width: 80%;
+  border-radius: 15px;
+  box-shadow: 0px 4px 5px #eeeeee;
+
+  position: fixed;
+  bottom: 10px;
+  z-index: 1000;
+`;
+
 class PuntosDeInteres extends Component {
   state = {
     openOptions: false,
@@ -70,7 +84,7 @@ class PuntosDeInteres extends Component {
     console.log(this.props.data);
 
     if (!this.props.data.puntosDeInteres) {
-      return <div>Loading</div>;
+      return <div>Loading...</div>;
     }
 
     // if (!this.props.isGeolocationEnabled) {
@@ -184,21 +198,56 @@ class PuntosDeInteres extends Component {
                 })}
               </div>
             </MainBodyContainer>
-            <Footer />
+            <Footer>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
+              >
+                <p style={{ fontSize: 10 }}>50</p>
+                <p style={{ fontSize: 7 }}>Eventos cercanos</p>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
+              >
+                <p style={{ fontSize: 10 }}>250</p>
+                <p style={{ fontSize: 7 }}>Negocios cercanos</p>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
+              >
+                <p style={{ fontSize: 10 }}>40</p>
+                <p style={{ fontSize: 7 }}>Momentos nuevos</p>
+              </div>
+            </Footer>
           </MainContainer>
         )}
+        }
       </MainContainer>
     );
   }
 }
 
 const query = gql`
-  query($nombre: String!, $categoria: Int!) {
+  query($nombre: String!, $idNegocio: Int!) {
     puntosDeInteres(
       nombre: $nombre
       pagina: 1
       porPagina: 20
-      categoria: $categoria
+      idUsuario: $idNegocio
     ) {
       nombre
       foto
@@ -212,17 +261,12 @@ const query = gql`
 `;
 
 export default compose(
-  geolocated({
-    positionOptions: {
-      enableHighAccuracy: false
-    },
-    userDecisionTimeout: 5000
-  }),
   graphql(query, {
     options: props => {
       return {
         variables: {
           nombre: "",
+          idNegocio: qs.parse(window.location.search).id,
           categoria: localStorage.getItem("category")
             ? parseInt(JSON.parse(localStorage.getItem("category")).idCategoria)
             : 0

@@ -24,7 +24,7 @@ var firebaseConfig = {
 };
 
 const client = new ApolloClient({
-  uri: "http://www.enlazonadmin.gq/api/"
+  uri: "https://www.enlazonadmin.gq/api/"
 });
 
 const store = createStore(rootReducer);

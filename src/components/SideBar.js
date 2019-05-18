@@ -104,7 +104,7 @@ class SideBar extends PureComponent {
               <ButtonText>Eventos</ButtonText>
             </Button>
           </NavButtons>
-          <NavButtons as={Link} to="/Business/">
+          <NavButtons as={Link} to="/Business">
             <Button
               onClick={() => this.props.close()}
               style={buttonStyle}

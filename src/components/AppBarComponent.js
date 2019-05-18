@@ -13,21 +13,14 @@ const MainContainer = styled.div`
   justify-content: space-between;
 `;
 
-const dontNav = [
-  "/Login",
-  "/DescripcionPuntosDeInteres",
-  "/MomentosPuntosDeInteres",
-  "/Events",
-  "/EditarPerfil",
-  "/ResenasPuntosDeInteres"
-];
+const dontNav = ["/PuntosDeInteres"];
 
 class AppBarComponent extends PureComponent {
   render() {
     return (
       <MainContainer>
         <IosMenuOutline onClick={() => this.props.handleOpenBar(true)} />
-        {!dontNav.includes(window.location.pathname) && (
+        {dontNav.includes(window.location.pathname) && (
           <IosOptionsOutline
             onClick={() => this.props.handleOpenOptions(true)}
           />

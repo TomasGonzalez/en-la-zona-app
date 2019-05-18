@@ -231,7 +231,9 @@ class InterestDescription extends PureComponent {
             </div>
           </div>
           <div>
-            <p style={{ fontSize: 9 }}>1200 reviews</p>
+            <p style={{ fontSize: 9 }}>
+              {this.props.data.puntoDeInteres.totalResenas} reviews
+            </p>
             <div
               onClick={() =>
                 this.props.history.push(
@@ -263,6 +265,7 @@ class InterestDescription extends PureComponent {
 const query = gql`
   query($id: Int!) {
     puntoDeInteres(id: $id) {
+      totalResenas
       nombre
       foto
       latitud

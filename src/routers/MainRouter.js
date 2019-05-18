@@ -21,6 +21,8 @@ import ResenasPuntosDeInteres from "../screens/ResenasPuntosDeInteres";
 import DetalleMomentoPuntoDeInteres from "../screens/DetalleMomentoPuntoDeInteres";
 import EventosPuntosDeInteres from "../screens/EventoPuntosDeInteres";
 import AddNewMoment from "../screens/AddNewMoment";
+import DescripcionEvento from "../screens/DescripcionEvento";
+import BusinessPuntoDeInteres from "../screens/BusinessPuntoDeInteres";
 
 const dontNav = [""];
 
@@ -68,23 +70,23 @@ class MainRouter extends PureComponent {
               />
             </AppBar>
           )}
-          <Route exact path="/Login/" component={Login} />
-          <Route exact path="/SignUp/" component={SignUp} />
-          <Route exact path="/PuntosDeInteres/" component={PuntosDeInteres} />
+          <Route exact path="/Login" component={Login} />
+          <Route exact path="/SignUp" component={SignUp} />
+          <Route exact path="/PuntosDeInteres" component={PuntosDeInteres} />
           <Route exact path="/" component={PuntosDeInteres} />
           <Route exact path="/Events" component={Events} />
-          <Route exact path="/Business/" component={Business} />
-          <Route exact path="/Momentos/" component={Momentos} />
-          <Route exact path="/Menu/" component={Menu} />
-          <Route exact path="/Mapa/" component={Mapa} />
+          <Route exact path="/Business" component={Business} />
+          <Route exact path="/Momentos" component={Momentos} />
+          <Route exact path="/Menu" component={Menu} />
+          <Route exact path="/Mapa" component={Mapa} />
           <Route
             exact
-            path="/DescripcionPuntosDeInteres/"
+            path="/DescripcionPuntosDeInteres"
             component={DescripcionPuntosDeInteres}
           />
           <Route
             exact
-            path="/MomentosPuntosDeInteres/"
+            path="/MomentosPuntosDeInteres"
             component={MomentosPuntosDeInteres}
           />
           <Route exact path="/EditarPerfil" component={EditarPerfil} />
@@ -104,6 +106,16 @@ class MainRouter extends PureComponent {
             component={EventosPuntosDeInteres}
           />
           <Route exact path="/AddNewMoment" component={AddNewMoment} />
+          <Route
+            exact
+            path="/DescripcionEvento"
+            component={DescripcionEvento}
+          />
+          <Route
+            exact
+            path="/BusinessPuntoDeInteres"
+            component={BusinessPuntoDeInteres}
+          />
         </div>
       </Router>
     );

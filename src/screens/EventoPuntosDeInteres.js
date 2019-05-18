@@ -163,7 +163,9 @@ class EventoPuntosDeinteres extends PureComponent {
                     marginBottom: 70
                   }}
                   onClick={() =>
-                    this.setState({ openOptions: true, modalInfo: item })
+                    this.props.history.push(
+                      `/DescripcionEvento?id=${item.idEvento}`
+                    )
                   }
                 >
                   <img
