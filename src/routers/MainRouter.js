@@ -39,7 +39,7 @@ class MainRouter extends PureComponent {
             open={this.state.drawerOpen}
             onOpen={() => this.setState({ drawerOpen: true })}
           >
-            <SideBar />
+            <SideBar close={() => this.setState({ drawerOpen: false })} />
           </Drawer>
           <Modal
             aria-labelledby="simple-modal-title"

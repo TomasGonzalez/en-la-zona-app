@@ -78,6 +78,7 @@ class Login extends Component {
   state = {
     email: null,
     password: null,
+    name: null,
     error: null
   };
 

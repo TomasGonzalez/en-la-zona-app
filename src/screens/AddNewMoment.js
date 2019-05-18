@@ -5,7 +5,8 @@ import "react-html5-camera-photo/build/css/index.css";
 class AddNewMoment extends Component {
   onTakePhoto(dataUri) {
     // Do stuff with the dataUri photo...
-    console.log("takePhoto");
+
+    console.log("takePhoto", dataUri);
   }
 
   render() {

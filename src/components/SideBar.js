@@ -65,50 +65,77 @@ class SideBar extends PureComponent {
   render() {
     return (
       <MainContainer>
-        <ProfileImage onClick={() => this.props.history.push("/EditarPerfil")}>
-          <div style={{ backgroundColor: "white", borderRadius: 15 }}>
+        <ProfileImage>
+          <button
+            onClick={() => (window.location = "/EditarPerfil")}
+            style={{ backgroundColor: "white", borderRadius: 15 }}
+          >
             <MdPerson fontSize="60px" size={"large"} />
-          </div>
+          </button>
         </ProfileImage>
         <NavButtonsContainer>
           <NavButtons as={Link} to="/">
-            <Button style={buttonStyle} size={"large"}>
+            <Button
+              onClick={() => this.props.close()}
+              style={buttonStyle}
+              size={"large"}
+            >
               <Home fontSize="20px" color="#4E96F6" />
               <ButtonText>Inicio</ButtonText>
             </Button>
           </NavButtons>
           <NavButtons as={Link} to="/PuntosDeInteres">
-            <Button style={buttonStyle} size={"large"}>
+            <Button
+              onClick={() => this.props.close()}
+              style={buttonStyle}
+              size={"large"}
+            >
               <MdSync fontSize="20px" color="#4E96F6" />
               <ButtonText>Puntos de interes</ButtonText>
             </Button>
           </NavButtons>
           <NavButtons as={Link} to="/Events">
-            <Button style={buttonStyle} size={"large"}>
+            <Button
+              onClick={() => this.props.close()}
+              style={buttonStyle}
+              size={"large"}
+            >
               <MdCalendar fontSize="20px" color="#4E96F6" />
               <ButtonText>Eventos</ButtonText>
             </Button>
           </NavButtons>
           <NavButtons as={Link} to="/Business/">
-            <Button style={buttonStyle} size={"large"}>
+            <Button
+              onClick={() => this.props.close()}
+              style={buttonStyle}
+              size={"large"}
+            >
               <IosBriefcase fontSize="20px" color="#4E96F6" />
               <ButtonText>Negocios</ButtonText>
             </Button>
           </NavButtons>
           <NavButtons as={Link} to="/Momentos">
-            <Button style={buttonStyle} size={"large"}>
+            <Button
+              onClick={() => this.props.close()}
+              style={buttonStyle}
+              size={"large"}
+            >
               <MdHappy fontSize="20px" color="#4E96F6" />
               <ButtonText>Momentos</ButtonText>
             </Button>
           </NavButtons>
           <NavButtons as={Link} to="/Mapa">
-            <Button style={buttonStyle} size={"large"}>
+            <Button
+              onClick={() => this.props.close()}
+              style={buttonStyle}
+              size={"large"}
+            >
               <IosMapOutline fontSize="20px" color="#4E96F6" />
               <ButtonText>Mapa</ButtonText>
             </Button>
           </NavButtons>
           {/* <NavButtons as={Link} to="/">
-            <Button style={buttonStyle} size={'large'}>
+            <Button onClick={() => this.props.close()} style={buttonStyle} size={'large'}>
               <IosSettings fontSize="20px" color="#4E96F6" />
               <ButtonText>Ajustes</ButtonText>
             </Button>
@@ -120,7 +147,11 @@ class SideBar extends PureComponent {
           onClick={this.handleLogout}
           style={{ backgroundColor: "#EE993B", marginTop: 20 }}
         >
-          <Button style={buttonStyle} size={"large"}>
+          <Button
+            onClick={() => this.props.close()}
+            style={buttonStyle}
+            size={"large"}
+          >
             <IosLogOut fontSize="20px" color="white" />
             <ButtonText>
               {localStorage.getItem("user") ? "Log Out" : "Log in"}

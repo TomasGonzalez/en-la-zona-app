@@ -98,7 +98,8 @@ class SignUp extends Component {
         const response = await this.props.mutate({
           variables: {
             email: this.state.email,
-            claveDeUsuario: this.state.password
+            claveDeUsuario: this.state.password,
+            nombre: this.state.name
           }
         });
         localStorage.setItem(
@@ -171,8 +172,12 @@ class SignUp extends Component {
 }
 
 const mutation = gql`
-  mutation($claveDeUsuario: String!, $email: String!) {
-    crearUsuarioActivo(claveDeUsuario: $claveDeUsuario, email: $email) {
+  mutation($claveDeUsuario: String!, $email: String!, $nombre: String) {
+    crearUsuarioActivo(
+      claveDeUsuario: $claveDeUsuario
+      email: $email
+      primerNombre: $nombre
+    ) {
       accessToken
     }
   }
