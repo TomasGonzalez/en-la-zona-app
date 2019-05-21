@@ -46,7 +46,7 @@ class InterestDescription extends PureComponent {
   render () {
     if(!this.props.modalInfo){
       return(
-        <div style={{backgroundColor: 'white', height: '100%'}}>Loading</div>
+        <div style={{backgroundColor: 'white', height: '100%'}}>Cargando...</div>
       )
     }
     return (
@@ -55,11 +55,11 @@ class InterestDescription extends PureComponent {
           <p style={{
             width: '100%',
             textAlign: 'center',
-            borderLeftColor: '#EE993B', 
-            borderLeftWidth: 2, 
+            borderLeftColor: '#EE993B',
+            borderLeftWidth: 2,
             borderLeftStyle: 'solid',
-            borderRightColor: '#EE993B', 
-            borderRightWidth: 2, 
+            borderRightColor: '#EE993B',
+            borderRightWidth: 2,
             borderRightStyle: 'solid'
             }}>{this.props.modalInfo.nombre}</p>
         </TitleBar>
@@ -67,9 +67,9 @@ class InterestDescription extends PureComponent {
         <div onClick={()=>this.setState({seeMore: !this.state.seeMore})} style={{
           display: 'flex',
           flexDirection: 'column',
-          height: 40, 
-          backgroundColor: "#EFD1A5", 
-          alignItems: 'center', 
+          height: 40,
+          backgroundColor: "#EFD1A5",
+          alignItems: 'center',
           justifyContent: 'center',
           paddingTop: 15,
         }}>
@@ -82,22 +82,22 @@ class InterestDescription extends PureComponent {
             </p>
           </div>
         }
-        <div 
-        onClick={()=>window.open(`https://maps.google.com/maps?daddr=${this.props.modalInfo.latitud},${this.props.modalInfo.longitud}&amp;ll=`)} 
+        <div
+        onClick={()=>window.open(`https://maps.google.com/maps?daddr=${this.props.modalInfo.latitud},${this.props.modalInfo.longitud}&amp;ll=`)}
         style={{
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-between',
-          backgroundColor: 'white', 
+          backgroundColor: 'white',
           alignItems: 'center',
-          marginTop: 20, 
+          marginTop: 20,
           paddingLeft: 10,
           paddingRight: 10
         }}>
-          <div> 
+          <div>
             Como llegar aqui: {<br/>} {this.props.modalInfo.direccionCalle1} {<br/>}
           </div>
-          <div style={{ 
+          <div style={{
             display: 'flex',
             backgroundColor: '#4797F4',
             height: 30,
@@ -112,9 +112,9 @@ class InterestDescription extends PureComponent {
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-between',
-          backgroundColor: 'white', 
+          backgroundColor: 'white',
           alignItems: 'center',
-          marginTop: 20, 
+          marginTop: 20,
           padding: 10,
           }}>
           <div style={{flex: 1}}>
@@ -129,7 +129,7 @@ class InterestDescription extends PureComponent {
           </div>
           <div>
             <p style={{fontSize: 9}}>1200 reviews</p>
-            <div style={{ 
+            <div style={{
               display: 'flex',
               backgroundColor: '#4797F4',
               height: 30,

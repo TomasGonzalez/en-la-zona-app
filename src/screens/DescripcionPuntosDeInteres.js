@@ -67,7 +67,7 @@ class InterestDescription extends PureComponent {
   render() {
     if (!this.props.data.puntoDeInteres) {
       return (
-        <div style={{ backgroundColor: "white", height: "100%" }}>Loading</div>
+        <div style={{ backgroundColor: "white", height: "100%" }}>Cargando...</div>
       );
     }
 

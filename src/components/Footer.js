@@ -22,7 +22,7 @@ function Footer(props) {
   console.log("data ", props.data);
 
   if (!props.data.ocurrenciasCercanas) {
-    return <div>Loading...</div>;
+    return <div>Cargando...</div>;
   }
 
   console.log(props.data.ocurrenciasCercanas);

@@ -69,7 +69,7 @@ class InterestDescription extends PureComponent {
   render() {
     if (!this.props.data.evento) {
       return (
-        <div style={{ backgroundColor: "white", height: "100%" }}>Loading</div>
+        <div style={{ backgroundColor: "white", height: "100%" }}>Cargando...</div>
       );
     }
 

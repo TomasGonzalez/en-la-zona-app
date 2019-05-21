@@ -71,7 +71,7 @@ class MomentosPDI extends PureComponent {
 
   render() {
     if (!this.props.data.momentos) {
-      return <div>Loading...</div>;
+      return <div>Cargando...</div>;
     }
 
     //console.log(this.props.data);
@@ -87,7 +87,7 @@ class MomentosPDI extends PureComponent {
             <div />
           ) : (
             <div className="loader" key={0}>
-              Loading ...
+              Cargando ...
             </div>
           )
         }

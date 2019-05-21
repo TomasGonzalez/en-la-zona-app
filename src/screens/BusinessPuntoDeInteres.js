@@ -71,7 +71,7 @@ class PuntosDeInteres extends Component {
     console.log(this.props.data);
 
     if (!this.props.data.puntosDeInteres) {
-      return <div>Loading...</div>;
+      return <div>Cargando...</div>;
     }
 
     // if (!this.props.isGeolocationEnabled) {

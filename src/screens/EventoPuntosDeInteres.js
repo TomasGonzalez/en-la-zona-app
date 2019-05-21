@@ -82,7 +82,7 @@ class EventoPuntosDeinteres extends PureComponent {
 
   render() {
     if (!this.props.data.eventos) {
-      return <div>loading...</div>;
+      return <div>Cargando...</div>;
     }
 
     return (
