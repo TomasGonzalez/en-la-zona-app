@@ -7,6 +7,7 @@ import { graphql } from "react-apollo";
 import { compose } from "redux";
 import { log } from "util";
 import qs from "query-string";
+import Footer from "../components/Footer";
 
 const MainContainer = styled.div`
   display: flex;
@@ -57,20 +58,6 @@ const SubTitle = styled.div`
   width: 100%;
   height: 30px;
   padding-top: 15px;
-`;
-
-const Footer = styled.div`
-  display: flex;
-  justify-content: space-around;
-  background-color: white;
-  height: 60px;
-  width: 80%;
-  border-radius: 15px;
-  box-shadow: 0px 4px 5px #eeeeee;
-
-  position: fixed;
-  bottom: 10px;
-  z-index: 1000;
 `;
 
 class PuntosDeInteres extends Component {
@@ -198,41 +185,7 @@ class PuntosDeInteres extends Component {
                 })}
               </div>
             </MainBodyContainer>
-            <Footer>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center"
-                }}
-              >
-                <p style={{ fontSize: 10 }}>50</p>
-                <p style={{ fontSize: 7 }}>Eventos cercanos</p>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center"
-                }}
-              >
-                <p style={{ fontSize: 10 }}>250</p>
-                <p style={{ fontSize: 7 }}>Negocios cercanos</p>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center"
-                }}
-              >
-                <p style={{ fontSize: 10 }}>40</p>
-                <p style={{ fontSize: 7 }}>Momentos nuevos</p>
-              </div>
-            </Footer>
+            <Footer />
           </MainContainer>
         )}
         }

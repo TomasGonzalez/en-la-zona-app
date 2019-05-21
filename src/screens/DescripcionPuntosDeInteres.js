@@ -253,7 +253,7 @@ class InterestDescription extends PureComponent {
                 color: "white"
               }}
             >
-              <p style={{ paddingLeft: 10, paddingRight: 10 }}>ver mas</p>
+              <p style={{ paddingLeft: 10, paddingRight: 10 }}>ver más</p>
             </div>
           </div>
         </div>

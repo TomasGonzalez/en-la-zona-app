@@ -39,6 +39,7 @@ function Modal(props) {
         }
       });
       props.close();
+      console.log(response);
     } catch (err) {
       console.log("there was an error", err);
       setError("logueate alfarol");

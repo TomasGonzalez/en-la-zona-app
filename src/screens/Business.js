@@ -180,7 +180,6 @@ class PuntosDeInteres extends Component {
                         }}
                       >
                         <p style={{ fontWeight: "bold" }}>
-                          Nombre:
                           {item.nombreDeUsuario}
                           <br />
                           Eventos:

@@ -7,6 +7,7 @@ import ModalDescription from "../components/ModalDescription";
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 import { compose } from "redux";
+import moment from "moment";
 
 const MainContainer = styled.div`
   display: flex;
@@ -121,7 +122,7 @@ class Events extends PureComponent {
                     flexDirection: "column",
                     alignItems: "center",
                     justifyContent: "flex-end",
-                    marginBottom: 70
+                    marginBottom: 120
                   }}
                   onClick={() =>
                     this.props.history.push(
@@ -142,7 +143,7 @@ class Events extends PureComponent {
                   <div
                     style={{
                       display: "flex",
-                      flexDirection: "column",
+                      flexDirection: "row",
                       borderBottomLeftRadius: 10,
                       borderBottomRightRadius: 10,
                       backgroundColor: "#E4E4E4",
@@ -158,6 +159,15 @@ class Events extends PureComponent {
                           item.puntoDeInteres.direccionCalle1}
                       </span>
                     </p>
+                    <div>
+                      Fecha: <br />
+                      {moment(item.fechaDeInicio).format("YYYY-MM-DD")} <br />
+                      Desde las {moment(item.fechaDeInicio).format(
+                        "hh:mm A"
+                      )}{" "}
+                      hasta las {moment(item.fechaDeInicio).format("hh:mm A")}
+                      {<br />}
+                    </div>
                   </div>
                 </div>
               );
