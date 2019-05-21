@@ -97,7 +97,7 @@ class EventoPuntosDeinteres extends PureComponent {
               )
             }
           >
-            Descripcion
+            Descripción
           </div>
           <div
             onClick={() =>

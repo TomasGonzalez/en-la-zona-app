@@ -109,7 +109,7 @@ class InterestDescription extends PureComponent {
         >
           <p style={{ color: "#4797F4" }} fontSize="60px">
             {" "}
-            {!this.state.seeMore ? "Ver informacion" : "Mostrar menos"}{" "}
+            {!this.state.seeMore ? "Ver información" : "Mostrar menos"}{" "}
           </p>
         </div>
         {this.state.seeMore && (

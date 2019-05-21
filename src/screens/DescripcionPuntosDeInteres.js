@@ -132,7 +132,7 @@ class InterestDescription extends PureComponent {
         >
           <p style={{ color: "#4797F4" }} fontSize="60px">
             {" "}
-            {!this.state.seeMore ? "Ver informacion" : "Mostrar menos"}{" "}
+            {!this.state.seeMore ? "Ver información" : "Mostrar menos"}{" "}
           </p>
         </div>
         {this.state.seeMore && (
@@ -162,7 +162,7 @@ class InterestDescription extends PureComponent {
           }}
         >
           <div>
-            Como llegar aqui: {<br />}{" "}
+            ¿Cómo llegar aquí? {<br />}{" "}
             {this.props.data.puntoDeInteres.direccionCalle1} {<br />}
           </div>
           <div
@@ -232,7 +232,7 @@ class InterestDescription extends PureComponent {
           </div>
           <div>
             <p style={{ fontSize: 9 }}>
-              {this.props.data.puntoDeInteres.totalResenas} reviews
+              {this.props.data.puntoDeInteres.totalResenas} Reseñas
             </p>
             <div
               onClick={() =>
@@ -253,7 +253,7 @@ class InterestDescription extends PureComponent {
                 color: "white"
               }}
             >
-              <p style={{ paddingLeft: 10, paddingRight: 10 }}>ver más</p>
+              <p style={{ paddingLeft: 10, paddingRight: 10 }}>Ver más</p>
             </div>
           </div>
         </div>

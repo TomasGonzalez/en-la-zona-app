@@ -67,7 +67,7 @@ class Events extends PureComponent {
 
   render() {
     if (!this.props.data.eventos) {
-      return <div>loading...</div>;
+      return <div>Cargando...</div>;
     }
 
     console.log(this.props.data.eventos);

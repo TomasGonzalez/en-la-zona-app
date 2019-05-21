@@ -63,13 +63,13 @@ class DetalleMomentoPuntoDeInteres extends PureComponent {
         return;
       }
     } else {
-      this.setState({ error: "you need to add a comment" });
+      this.setState({ error: "Debe añadir un comentario" });
     }
   };
 
   render() {
     if (!this.props.data.momentos) {
-      return <div>Loading...</div>;
+      return <div>Cargando...</div>;
     }
 
     const item = this.props.data.momentos[0];

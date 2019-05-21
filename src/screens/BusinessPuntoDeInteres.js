@@ -118,7 +118,7 @@ class PuntosDeInteres extends Component {
         ) : (
           <MainContainer>
             <SubTitle>
-              <p style={{ fontSize: 14 }}>Puntos de interes</p>
+              <p style={{ fontSize: 14 }}>Puntos de interés</p>
             </SubTitle>
             <MainBodyContainer>
               <div

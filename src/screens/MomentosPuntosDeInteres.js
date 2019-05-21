@@ -45,7 +45,7 @@ class MomentosPDI extends PureComponent {
               )
             }
           >
-            Descripcion
+            Descripción
           </div>
           <Active>Momentos</Active>
           <div

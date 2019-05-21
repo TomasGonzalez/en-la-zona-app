@@ -90,7 +90,7 @@ class SignUp extends Component {
     }
 
     if (!re.test(this.state.email)) {
-      error = "El email no es valido";
+      error = "El correo electrónico no es válido";
     }
 
     if (!error) {
