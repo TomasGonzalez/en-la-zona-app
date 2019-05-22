@@ -93,7 +93,7 @@ class AppMenu extends PureComponent {
     console.log("state: ", this.state.selectedCategory);
 
     if (!this.props.data.categorias) {
-      return <div>Loading</div>;
+      return <div>Cargando...</div>;
     }
 
     const renderData = [

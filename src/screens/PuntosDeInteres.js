@@ -70,7 +70,7 @@ class PuntosDeInteres extends Component {
     console.log(this.props.data);
 
     if (!this.props.data.puntosDeInteres) {
-      return <div>Loading</div>;
+      return <div>Cargando...</div>;
     }
 
     // if (!this.props.isGeolocationEnabled) {
@@ -117,7 +117,7 @@ class PuntosDeInteres extends Component {
         ) : (
           <MainContainer>
             <SubTitle>
-              <p style={{ fontSize: 14 }}>Puntos de interes</p>
+              <p style={{ fontSize: 14 }}>Puntos de interés</p>
             </SubTitle>
             <MainBodyContainer>
               <div

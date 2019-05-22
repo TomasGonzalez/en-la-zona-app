@@ -19,7 +19,7 @@ const MainContainer = styled.div`
   background-color: #ffffff;
   padding-left: 10px;
   padding-right: 10px;
-  padding-top: 60px;
+  padding-top: 20px;
 `;
 
 const ItemContainer = styled.div`
@@ -63,13 +63,13 @@ class DetalleMomentoPuntoDeInteres extends PureComponent {
         return;
       }
     } else {
-      this.setState({ error: "you need to add a comment" });
+      this.setState({ error: "Debe añadir un comentario" });
     }
   };
 
   render() {
     if (!this.props.data.momentos) {
-      return <div>Loading...</div>;
+      return <div>Cargando...</div>;
     }
 
     const item = this.props.data.momentos[0];
@@ -77,7 +77,6 @@ class DetalleMomentoPuntoDeInteres extends PureComponent {
     return (
       <MainContainer>
         <div style={{ color: "red" }}>{this.state.error}</div>
-
         <ItemContainer>
           <Header>
             <div
@@ -228,6 +227,14 @@ class DetalleMomentoPuntoDeInteres extends PureComponent {
             );
           })}
         </ItemContainer>
+        <div
+          style={{
+            backgroundColor: "red",
+            height: 100,
+            marginTop: 0,
+            position: "absolute"
+          }}
+        />
       </MainContainer>
     );
   }

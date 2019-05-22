@@ -83,7 +83,7 @@ class ResenasPuntosDeInteres extends PureComponent {
   render() {
     if (!this.props.data.puntoDeInteres) {
       return (
-        <div style={{ backgroundColor: "white", height: "100%" }}>Loading</div>
+        <div style={{ backgroundColor: "white", height: "100%" }}>Cargando...</div>
       );
     }
 
@@ -175,7 +175,7 @@ class ResenasPuntosDeInteres extends PureComponent {
                   }}
                 >
                   <Happy fontSize="40px" color="#597B6A" />
-                  <div>Me ayudo</div>
+                  <div>Me ayudó</div>
                 </div>
                 <div
                   style={{
@@ -186,7 +186,7 @@ class ResenasPuntosDeInteres extends PureComponent {
                   }}
                 >
                   <Sad fontSize="40px" color="#DE9C4C" />
-                  <div>No me ayudo</div>
+                  <div>No me ayudó</div>
                 </div>
               </IconBottons>
             </Messages>

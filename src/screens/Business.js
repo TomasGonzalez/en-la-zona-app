@@ -82,7 +82,7 @@ class PuntosDeInteres extends Component {
     console.log(this.props.data);
 
     if (!this.props.data.usuarios) {
-      return <div>Loading</div>;
+      return <div>Cargando...</div>;
     }
 
     // if (!this.props.isGeolocationEnabled) {
@@ -180,7 +180,6 @@ class PuntosDeInteres extends Component {
                         }}
                       >
                         <p style={{ fontWeight: "bold" }}>
-                          Nombre:
                           {item.nombreDeUsuario}
                           <br />
                           Eventos:

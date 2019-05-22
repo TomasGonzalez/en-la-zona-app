@@ -28,7 +28,7 @@ const Active = styled.div`
 class MomentosPDI extends PureComponent {
   render() {
     if (!this.props.data.momentos) {
-      return <div>Loading...</div>;
+      return <div>Cargando...</div>;
     }
 
     console.log(this.props.data.momentos);
@@ -45,7 +45,7 @@ class MomentosPDI extends PureComponent {
               )
             }
           >
-            Descripcion
+            Descripción
           </div>
           <Active>Momentos</Active>
           <div

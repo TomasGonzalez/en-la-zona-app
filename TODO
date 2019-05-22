@@ -1,0 +1,38 @@
+1. Al entrar a la aplicación, debe existir una manera en la que se identifique cuál es el propósito de la aplicación (sugerencia de Héctor: que aparezcan los puntos de interés cercanos al usuario que la está usando), sugerencia (otra): onboarding, otra sugerencia: feed con resumen de lo que está pasando en el momento.
+2. Hay que revisar si se van a subir momentos en el perfil 
+3. En el evento poner: imagen del evento, nombre, fecha inicio, fecha fin, dirección. Tanto en la vista rápida como en la descripción del evento.
+4. El mapa no debe sacarte fuera de la aplicación.
+5. En el onboarding que se explique lo que es un punto de interés.
+7. Poner Telefono en los puntos de interés de los negocios Imagen, dirección Más lleva acento
+8. Arreglar ortografía
+9. Login con otras redes sociales
+10. Compartir momentos con otras redes sociales
+11. Agregar un borde en no sé qué (algo que Haziel dijo que estaba demasiado blanco)
+14. Poner un sorting en las reseñas
+15. Implementar moderador de información
+22. Aplicar algoritmo para palabras vetadas
+24. Sorting de los comentarios
+26. Cerrar cadena de comentario
+31. Falta feedback de registro
+32. Falta confirmación de correo
+33. Habilitar opción para recibir sugerencias de la aplicación
+
+------------------ Need helop with ^^ ----------------------------
+
+
+12. Agregar un back button en todo los lados
+13. Poner un bloqueo para que no te deje escribir si no estás logueado
+16. Los 3 indicadores deben ser botones que lleven a lo que indicador (si hay 50 eventos cercanos, que lleven a la lista de eventos y etc)
+17. Actualizar el footer en todas las pantallas
+20. Arreglar los likes en los momentos
+21. Falta reply a los comentarios
+23. Arreglar likes a los comentarios
+25. Traducir los mensajes que se encuentren en inglés
+27. Subir una foto ya hechos
+28. Agregar vídeo a momentos
+
+----------------------------Done vvvvvv ---------------------------
+30. No cargan las fotos
+29. Probar configuración de la cámara
+18. Revista por qué los momentos tardan tanto para cargar (Tomás dice que se fue el internet)
+6. Quitar label de nombre pata los negocios

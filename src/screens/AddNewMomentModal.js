@@ -39,6 +39,7 @@ function Modal(props) {
         }
       });
       props.close();
+      console.log(response);
     } catch (err) {
       console.log("there was an error", err);
       setError("logueate alfarol");
@@ -50,7 +51,7 @@ function Modal(props) {
     <MainContainer>
       <StyledImg src={props.image} />
       <TextArea
-        placeholder="Descripcion"
+        placeholder="Descripción"
         autosize={{ minRows: 2, maxRows: 6 }}
         style={{ marginTop: 20 }}
         onChange={value => setText(value.target.value)}

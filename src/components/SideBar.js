@@ -91,7 +91,7 @@ class SideBar extends PureComponent {
               size={"large"}
             >
               <MdSync fontSize="20px" color="#4E96F6" />
-              <ButtonText>Puntos de interes</ButtonText>
+              <ButtonText>Puntos de interés</ButtonText>
             </Button>
           </NavButtons>
           <NavButtons as={Link} to="/Events">
@@ -154,7 +154,7 @@ class SideBar extends PureComponent {
           >
             <IosLogOut fontSize="20px" color="white" />
             <ButtonText>
-              {localStorage.getItem("user") ? "Log Out" : "Log in"}
+              {localStorage.getItem("user") ? "Cerrar sesión" : "Iniciar sesión"}
             </ButtonText>
           </Button>
         </NavButtons>

@@ -55,7 +55,7 @@ class ModalAgregarResenaPuntoDeInteres extends Component {
       }
     } else {
       this.setState({
-        error: "Debe incluir un commentarion y una calificacion"
+        error: "Debe incluir un comentario y una calificación"
       });
     }
   };

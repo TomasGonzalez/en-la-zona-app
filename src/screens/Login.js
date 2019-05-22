@@ -96,7 +96,7 @@ class Login extends Component {
       this.props.history.push("/");
     } catch (err) {
       console.log("there was an error", err);
-      this.setState({ error: "Credenciales o email son incorrectos" });
+      this.setState({ error: "El correo electrónico o la contraseña son incorrectos" });
       return;
     }
   };
@@ -108,24 +108,24 @@ class Login extends Component {
         <Logo src={logo} />
         <FormContainer>
           <InputField>
-            <p style={{ color: "#9D9D9D" }}>Email</p>
+            <p style={{ color: "#9D9D9D" }}>Correo electrónico</p>
             <Input
               onChange={text => this.setState({ email: text.target.value })}
               type="email"
             />
           </InputField>
           <InputField class="inputField">
-            <p style={{ color: "#9D9D9D" }}>Password</p>
+            <p style={{ color: "#9D9D9D" }}>Contraseña</p>
             <Input
               onChange={text => this.setState({ password: text.target.value })}
               type="password"
             />
           </InputField>
           <LoginButton onClick={this.handleSubmit}>
-            <LoginButtonText>LOG IN</LoginButtonText>
+            <LoginButtonText>Iniciar sesión</LoginButtonText>
           </LoginButton>
           <Link to="/signUp/" style={{ marginTop: 30 }}>
-            registrar
+            Registrarse
           </Link>
           <div style={{ color: "red", fontWeight: "bold", margintop: 20 }}>
             {this.state.error && this.state.error}

@@ -8,6 +8,7 @@ import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 import { compose } from "redux";
 import MdPerson from "react-ionicons/lib/MdPerson";
+import InfiniteScroll from "react-infinite-scroller";
 
 const ActiveTabs = styled.div`
   display: flex;
@@ -42,15 +43,55 @@ const Footer = styled.div`
 `;
 
 class MomentosPDI extends PureComponent {
+  state = {
+    end: false
+  };
+
+  loadFunction = async page => {
+    console.log(page);
+
+    this.props.data.fetchMore({
+      variables: {
+        pagina: page
+      },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        console.log("this is the fetchMore", fetchMoreResult);
+
+        if (!fetchMoreResult) {
+          this.setState({ end: true });
+          return prev;
+        }
+        return Object.assign({}, prev, {
+          momentos: [...prev.momentos, ...fetchMoreResult.momentos]
+        });
+      }
+    });
+    console.log(this.props.data);
+  };
+
   render() {
     if (!this.props.data.momentos) {
-      return <div>Loading...</div>;
+      return <div>Cargando...</div>;
     }
 
-    console.log(this.props.data.momentos);
+    //console.log(this.props.data);
+    //console.log(this.props.data.momentos);
 
     return (
-      <div>
+      <InfiniteScroll
+        pageStart={1}
+        loadMore={this.loadFunction}
+        hasMore={!this.state.end}
+        loader={
+          this.state.end ? (
+            <div />
+          ) : (
+            <div className="loader" key={0}>
+              Cargando ...
+            </div>
+          )
+        }
+      >
         {this.props.data.momentos.map(item => {
           return (
             <div>
@@ -168,14 +209,14 @@ class MomentosPDI extends PureComponent {
         <Footer onClick={() => this.props.history.push("/AddNewMoment")}>
           Agregar
         </Footer>
-      </div>
+      </InfiniteScroll>
     );
   }
 }
 
 const query = gql`
-  query {
-    momentos {
+  query($pagina: Int) {
+    momentos(porPagina: 10, pagina: $pagina) {
       usuario {
         email
         nombreDeUsuario
