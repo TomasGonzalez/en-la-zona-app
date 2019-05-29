@@ -185,7 +185,7 @@ class PuntosDeInteres extends Component {
                 })}
               </div>
             </MainBodyContainer>
-            <Footer />
+            <Footer {...this.props} />
           </MainContainer>
         )}
         }

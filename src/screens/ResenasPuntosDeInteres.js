@@ -80,12 +80,46 @@ class ResenasPuntosDeInteres extends PureComponent {
     openOptions: false
   };
 
+  chooseColor = (itemVal, value, color) => {
+    if (value === 0) {
+      return color;
+    }
+
+    if (value === itemVal) {
+      return "blue";
+    }
+
+    return "gray";
+  };
+
+  handleLike = async (positiva, id) => {
+    try {
+      const response = await this.props.mutate({
+        variables: {
+          esPositiva: positiva,
+          idResena: id,
+          token: localStorage.getItem("user")
+        }
+      });
+      this.props.data.refetch();
+      console.log(response);
+    } catch (err) {
+      console.log("there was an error", err);
+      return;
+    }
+  };
+
   render() {
-    if (!this.props.data.puntoDeInteres) {
+    if (!this.props.data.resenas && !this.props.data.puntoDeInteres) {
       return (
-        <div style={{ backgroundColor: "white", height: "100%" }}>Cargando...</div>
+        <div style={{ backgroundColor: "white", height: "100%" }}>
+          Cargando...
+        </div>
       );
     }
+
+    console.log("this is data ma amn");
+    console.log(this.props.data);
 
     return (
       <MainContainer>
@@ -124,10 +158,10 @@ class ResenasPuntosDeInteres extends PureComponent {
           </p>
         </TitleBar>
         <div style={{ marginTop: 100 }} />
-        {this.props.data.puntoDeInteres.resenas.edges.map(item => {
+        {this.props.data.resenas.map(item => {
           return (
             <Messages>
-              {item.node.usuario.urlFotoMiniatura ? (
+              {item.usuario.urlFotoMiniatura ? (
                 <img
                   alt=""
                   style={{
@@ -140,7 +174,7 @@ class ResenasPuntosDeInteres extends PureComponent {
                     alignItems: "center",
                     marginTop: 50
                   }}
-                  src={item.node.usuario.urlFotoMiniatura}
+                  src={item.usuario.urlFotoMiniatura}
                 />
               ) : (
                 <div
@@ -158,12 +192,12 @@ class ResenasPuntosDeInteres extends PureComponent {
                   <MdPerson fontSize="40px" color="#90BEF8" />
                 </div>
               )}
-              {item.node.usuario.nombreDeUsuario && (
+              {item.usuario.nombreDeUsuario && (
                 <div style={{ marginTop: 20 }}>
-                  @{item.node.usuario.nombreDeUsuario}
+                  @{item.usuario.nombreDeUsuario}
                 </div>
               )}
-              <div style={{ marginTop: 50 }}>{item.node.contenido}</div>
+              <div style={{ marginTop: 50 }}>{item.contenido}</div>
 
               <IconBottons>
                 <div
@@ -174,7 +208,14 @@ class ResenasPuntosDeInteres extends PureComponent {
                     alignItems: "center"
                   }}
                 >
-                  <Happy fontSize="40px" color="#597B6A" />
+                  <Happy
+                    onClick={() =>
+                      item.reaccionUsuario === 0 &&
+                      this.handleLike(true, item.idResena)
+                    }
+                    fontSize="40px"
+                    color={this.chooseColor(1, item.reaccionUsuario, "#597B6A")}
+                  />
                   <div>Me ayudó</div>
                 </div>
                 <div
@@ -185,7 +226,18 @@ class ResenasPuntosDeInteres extends PureComponent {
                     alignItems: "center"
                   }}
                 >
-                  <Sad fontSize="40px" color="#DE9C4C" />
+                  <Sad
+                    onClick={() =>
+                      item.reaccionUsuario === 0 &&
+                      this.handleLike(false, item.idResena)
+                    }
+                    fontSize="40px"
+                    color={this.chooseColor(
+                      -1,
+                      item.reaccionUsuario,
+                      "#DE9C4C"
+                    )}
+                  />
                   <div>No me ayudó</div>
                 </div>
               </IconBottons>
@@ -204,8 +256,22 @@ class ResenasPuntosDeInteres extends PureComponent {
   }
 }
 
+const mutation = gql`
+  mutation($esPositiva: Boolean!, $idResena: Int!, $token: String!) {
+    crearReaccionResena(
+      esPositiva: $esPositiva
+      idResena: $idResena
+      token: $token
+    ) {
+      reaccion {
+        esPositiva
+      }
+    }
+  }
+`;
+
 const query = gql`
-  query($id: Int!) {
+  query($id: Int!, $token: String) {
     puntoDeInteres(id: $id) {
       nombre
       foto
@@ -213,42 +279,40 @@ const query = gql`
       longitud
       direccionCalle1
       descripcionCorta
-      resenas {
-        edges {
-          node {
-            idResena
-            idResena
-            idUsuario
-            idPuntoDeInteres
-            contenido
-            fechaDeCreacion
-            fueEditada
-            idCalificacion
-            calificacion {
-              idCalificacion
-              valor
-            }
-            usuario {
-              idUsuario
-              primerNombre
-              segundoNombre
-              apellido
-              nombreDeUsuario
-              urlFotoMiniatura
-            }
-          }
-        }
+    }
+    resenas(token: $token, idPuntoDeInteres: $id) {
+      idResena
+      idUsuario
+      reaccionUsuario
+      idPuntoDeInteres
+      contenido
+      fechaDeCreacion
+      fueEditada
+      idCalificacion
+      calificacion {
+        idCalificacion
+        valor
+      }
+      usuario {
+        idUsuario
+        primerNombre
+        segundoNombre
+        apellido
+        nombreDeUsuario
+        urlFotoMiniatura
       }
     }
   }
 `;
 
 export default compose(
+  graphql(mutation),
   graphql(query, {
     options: props => {
       return {
         variables: {
-          id: qs.parse(window.location.search).id
+          id: qs.parse(window.location.search).id,
+          token: localStorage.getItem("user")
         }
       };
     }

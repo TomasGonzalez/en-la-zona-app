@@ -25,11 +25,14 @@ function Footer(props) {
     return <div>Cargando...</div>;
   }
 
-  console.log(props.data.ocurrenciasCercanas);
+  console.log(props);
 
   return (
     <TFooter>
       <div
+        onClick={() => {
+          props.history.push(`/Events`);
+        }}
         style={{
           display: "flex",
           flexDirection: "column",
@@ -43,6 +46,9 @@ function Footer(props) {
         <p style={{ fontSize: 7 }}>Eventos cercanos</p>
       </div>
       <div
+        onClick={() => {
+          props.history.push(`/Business`);
+        }}
         style={{
           display: "flex",
           flexDirection: "column",
@@ -56,6 +62,9 @@ function Footer(props) {
         <p style={{ fontSize: 7 }}>Negocios cercanos</p>
       </div>
       <div
+        onClick={() => {
+          props.history.push(`/Momentos`);
+        }}
         style={{
           display: "flex",
           flexDirection: "column",
