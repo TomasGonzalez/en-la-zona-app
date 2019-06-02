@@ -122,7 +122,7 @@ class SignUp extends Component {
         <Logo src={logo} />
         <FormContainer>
           <InputField>
-            <p style={{ color: "#9D9D9D" }}>Name</p>
+            <p style={{ color: "#9D9D9D" }}>Nombre</p>
             <Input
               onChange={text => {
                 this.setState({ name: text.target.value });
@@ -131,7 +131,7 @@ class SignUp extends Component {
             />
           </InputField>
           <InputField class="inputField">
-            <p style={{ color: "#9D9D9D" }}>Email</p>
+            <p style={{ color: "#9D9D9D" }}>Correo electrónico</p>
             <Input
               onChange={text => {
                 this.setState({ email: text.target.value });
@@ -140,7 +140,7 @@ class SignUp extends Component {
             />
           </InputField>
           <InputField class="inputField">
-            <p style={{ color: "#9D9D9D" }}>Password</p>
+            <p style={{ color: "#9D9D9D" }}>Contraseña</p>
             <Input
               onChange={text => {
                 this.setState({ password: text.target.value });
@@ -150,7 +150,7 @@ class SignUp extends Component {
             />
           </InputField>
           <InputField class="inputField">
-            <p style={{ color: "#9D9D9D" }}>Repete password</p>
+            <p style={{ color: "#9D9D9D" }}>Confirmar contraseña</p>
             <Input
               onChange={text => {
                 this.setState({ rPassword: text.target.value });
@@ -160,7 +160,7 @@ class SignUp extends Component {
             />
           </InputField>
           <LoginButton onClick={this.handleSubmit}>
-            <LoginButtonText>Sign Up</LoginButtonText>
+            <LoginButtonText>Registrarse</LoginButtonText>
           </LoginButton>
           <div style={{ color: "red", fontWeight: "bold", margintop: 20 }}>
             {this.state.error && this.state.error}

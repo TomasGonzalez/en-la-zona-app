@@ -31,8 +31,13 @@
     "styled-components": "^4.1.3"
   },
   "scripts": {
+<<<<<<< HEAD
     "deploy": "aws s3 sync build/ s3://enlazona-app",
     "start": "PORT=3000 react-scripts start",
+=======
+    "deploy": "aws s3 sync build/ s3://www.enlazona.gq",
+    "start": "react-scripts start",
+>>>>>>> 3309737501315b6ebc99aa9191cf2b1f4c64a98b
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
