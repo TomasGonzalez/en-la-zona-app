@@ -1,0 +1,56 @@
+1. Onboarding (esperando a lucas, o data real)
+2. Pantalla de perfil no esta hecha
+3. Home/Feed diferente a PoI o quitenla 
+6. hay una llave al final de toda pantalla de Poi que pertenecen a un negocio 
+8. Falta fecha de fin en un evento especifico, verificar si hay eventos de multi dias (francia puso Fecha inicio y fecha fin)
+10. exportar momentos a redes sociales
+12. error de registrarse con correo existente
+13. Control de passwords 
+14. BACK BUTTON 
+18. area de NEGOCIOS entera, ellos suben data(momentos)? if so como? moderan posts? if so como? 
+19. Likes en momentos
+20. no deberia dejarte escribir un comentario sin estar logged in (no te deja postear pero te deja escribir, pop up con error)
+22. likes de comentarios
+15. No te deberia dejar intentar escribir una reseña sin login (aunque no puedes mandarla actualmente, el pop up no deberia abrir y en vez un error msg diciendote "log in para hacer esto")
+7. texto en filtro dentro de PoI no debe empezar vacio, debe empezar en ninguna 
+
+v2: 
+4. Negocio tiene mucho espacio en eventos, no se entiende como funciona
+5. Poner Telefono en los puntos de interés de los negocios
+9. Login con otras redes sociales
+11. adjuntar red social a perfil 
+16. http://prntscr.com/nwrir8 los elementos de un evento en el listado estan muy pegados, aunque el titulo este en negrita no hay orden. .
+17. quitar el sorting fuera de la pantalla del listado de Poi, agregar el sorting para las reseñas
+21. Falta reply a los comentarios
+23. sorteo de comentarios
+24. subir fotos ya en el telefono
+25. videos?
+
+
+
+
+Falta por probar:
+1. Ortografia (ingles) 
+2. Location/gps 
+3. concurrency testing (muchos dispositivos a la vez) 
+4. Long values en texto (como titulos y sub titulos)
+
+
+No entendi: 
+11. Agregar un borde en no sé qué (algo que Haziel dijo que estaba demasiado blanco)
+17. Actualizar el footer en todas las pantallas (que footer?) 
+
+
+hecho:
+26. Confirmacion de correo
+. Necesitamos ya tener data real 
+
+
+importa menos:
+
+1. rango de millas funciona? 
+2. el error de correo no valido deberia irse despues de un tiempo, o la gente no sabe si la segunda vez lo hizo bien. 
+3. quitar acceso a login desde el browser aunque ya estas logged in, esto se logra escribiendo /login en url
+4. ssl? 
+5. lag a la hora de abrir momentos con muchas fotos por primera vez (me paso hoy 6/2/2019)
+6. sugerencia de app

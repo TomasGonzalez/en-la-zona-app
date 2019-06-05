@@ -9,6 +9,8 @@ import IosMapOutline from "react-ionicons/lib/IosMapOutline";
 import IosSettings from "react-ionicons/lib/IosSettings";
 import IosLogOut from "react-ionicons/lib/IosLogOut";
 import MdPerson from "react-ionicons/lib/MdPerson";
+import Back from "react-ionicons/lib/IosArrowRoundBack";
+import { withRouter } from "react-router-dom";
 
 import { Button } from "antd";
 import { Link } from "react-router-dom";
@@ -67,21 +69,21 @@ class SideBar extends PureComponent {
       <MainContainer>
         <ProfileImage>
           <button
-            onClick={() => (window.location = "/EditarPerfil")}
+            //onClick={() => (window.location = "/EditarPerfil")}
             style={{ backgroundColor: "white", borderRadius: 15 }}
           >
             <MdPerson fontSize="60px" size={"large"} />
           </button>
         </ProfileImage>
         <NavButtonsContainer>
-          <NavButtons as={Link} to="/">
+          <NavButtons as={Link} to="/OnBoarding">
             <Button
               onClick={() => this.props.close()}
               style={buttonStyle}
               size={"large"}
             >
               <Home fontSize="20px" color="#4E96F6" />
-              <ButtonText>Inicio</ButtonText>
+              <ButtonText> Introduccion </ButtonText>
             </Button>
           </NavButtons>
           <NavButtons as={Link} to="/PuntosDeInteres">
@@ -141,6 +143,19 @@ class SideBar extends PureComponent {
             </Button>
           </NavButtons> */}
         </NavButtonsContainer>
+        <NavButtons>
+          <Button
+            onClick={() => {
+              this.props.history.goBack(this);
+              this.props.close();
+            }}
+            style={buttonStyle}
+            size={"large"}
+          >
+            <Back fontSize="20px" color="#4E96F6" />
+            <ButtonText> Regresar </ButtonText>
+          </Button>
+        </NavButtons>
         <NavButtons
           as={Link}
           to={"/Login"}
@@ -154,7 +169,9 @@ class SideBar extends PureComponent {
           >
             <IosLogOut fontSize="20px" color="white" />
             <ButtonText>
-              {localStorage.getItem("user") ? "Cerrar sesión" : "Iniciar sesión"}
+              {localStorage.getItem("user")
+                ? "Cerrar sesión"
+                : "Iniciar sesión"}
             </ButtonText>
           </Button>
         </NavButtons>
@@ -163,4 +180,4 @@ class SideBar extends PureComponent {
   }
 }
 
-export default SideBar;
+export default withRouter(SideBar);

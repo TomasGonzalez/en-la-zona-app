@@ -82,15 +82,7 @@ class MomentosPDI extends PureComponent {
         pageStart={1}
         loadMore={this.loadFunction}
         hasMore={!this.state.end}
-        loader={
-          this.state.end ? (
-            <div />
-          ) : (
-            <div className="loader" key={0}>
-              Cargando ...
-            </div>
-          )
-        }
+        loader={this.state.end ? <div /> : <div className="loader" key={0} />}
       >
         {this.props.data.momentos.map(item => {
           return (
@@ -163,7 +155,7 @@ class MomentosPDI extends PureComponent {
                     </p>
                   </div>
                 </div>
-                <div
+                {/* <div
                   style={{
                     display: "flex",
                     width: "100%",
@@ -192,7 +184,7 @@ class MomentosPDI extends PureComponent {
                       {item.dislikes}
                     </p>
                   </div>
-                </div>
+                </div> */}
               </div>
               <div
                 style={{

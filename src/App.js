@@ -38,7 +38,7 @@ class App extends Component {
     return (
       <ApolloProvider client={client}>
         <ReduxProvider store={store}>
-          <div style={{ paddingTop: 50 }}>
+          <div style={{ paddingTop: 40 }}>
             <MainRouter />
           </div>
         </ReduxProvider>

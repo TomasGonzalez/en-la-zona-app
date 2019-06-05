@@ -130,7 +130,7 @@ class MomentosPDI extends PureComponent {
                     </p>
                   </div>
                 </div>
-                <div
+                {/* <div
                   style={{
                     display: "flex",
                     width: "100%",
@@ -159,7 +159,7 @@ class MomentosPDI extends PureComponent {
                       {item.dislikes}
                     </p>
                   </div>
-                </div>
+                </div> */}
               </div>
               <div
                 style={{

@@ -83,8 +83,6 @@ class Login extends Component {
   };
 
   handleSubmit = async () => {
-    console.log(this.state);
-
     try {
       const response = await this.props.mutate({
         variables: {
@@ -93,10 +91,13 @@ class Login extends Component {
         }
       });
       localStorage.setItem("user", response.data.autorizarUsuario.accessToken);
-      this.props.history.push("/");
+      window.location = "/OnBoarding";
     } catch (err) {
-      console.log("there was an error", err);
-      this.setState({ error: "El correo electrónico o la contraseña son incorrectos" });
+      console.log(err);
+
+      this.setState({
+        error: err.message
+      });
       return;
     }
   };

@@ -119,7 +119,7 @@ class DetalleMomentoPuntoDeInteres extends PureComponent {
             </div>
           </Header>
           <img style={{ width: "100%" }} src={item.multimedia} />
-          <div
+          {/* <div
             style={{
               display: "flex",
               flexDirection: "row",
@@ -150,7 +150,7 @@ class DetalleMomentoPuntoDeInteres extends PureComponent {
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
           <div
             style={{
               backgroundColor: "#F0F0F0",

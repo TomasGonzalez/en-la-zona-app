@@ -23,8 +23,9 @@ import EventosPuntosDeInteres from "../screens/EventoPuntosDeInteres";
 import AddNewMoment from "../screens/AddNewMoment";
 import DescripcionEvento from "../screens/DescripcionEvento";
 import BusinessPuntoDeInteres from "../screens/BusinessPuntoDeInteres";
+import OnBoarding from "../screens/OnBoarding";
 
-const dontNav = [""];
+const dontNav = ["/Login", "/signUp"];
 
 class MainRouter extends PureComponent {
   state = {
@@ -33,6 +34,18 @@ class MainRouter extends PureComponent {
   };
 
   render() {
+    if (!localStorage.getItem("user")) {
+      return (
+        <Router>
+          <div>
+            <Route exact path="/" component={Login} />
+            <Route exact path="/Login" component={Login} />
+            <Route exact path="/SignUp" component={SignUp} />
+          </div>
+        </Router>
+      );
+    }
+
     return (
       <Router>
         <div>
@@ -116,6 +129,7 @@ class MainRouter extends PureComponent {
             path="/BusinessPuntoDeInteres"
             component={BusinessPuntoDeInteres}
           />
+          <Route exact path="/Onboarding" component={OnBoarding} />
         </div>
       </Router>
     );

@@ -87,10 +87,12 @@ class SignUp extends Component {
 
     if (this.state.password !== this.state.rPassword) {
       error = "La contraseña no coincide";
+      this.setState({ error: error });
     }
 
     if (!re.test(this.state.email)) {
       error = "El correo electrónico no es válido";
+      this.setState({ error: error });
     }
 
     if (!error) {
@@ -102,18 +104,13 @@ class SignUp extends Component {
             nombre: this.state.name
           }
         });
-        localStorage.setItem(
-          "user",
-          response.data.crearUsuarioActivo.accessToken
-        );
         this.props.history.push("/");
       } catch (err) {
+        this.setState({ error: err.message });
         console.log("there was an error", err);
         return;
       }
     }
-
-    this.setState({ error: error });
   };
 
   render() {
