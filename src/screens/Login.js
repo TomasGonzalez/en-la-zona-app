@@ -94,10 +94,7 @@ class Login extends Component {
       window.location = "/OnBoarding";
     } catch (err) {
       console.log(err);
-
-      this.setState({
-        error: err.message
-      });
+      this.setState({ error: err.message.replace("GraphQL error:", "") });
       return;
     }
   };

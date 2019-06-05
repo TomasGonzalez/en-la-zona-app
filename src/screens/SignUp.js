@@ -106,7 +106,7 @@ class SignUp extends Component {
         });
         this.props.history.push("/");
       } catch (err) {
-        this.setState({ error: err.message });
+        this.setState({ error: err.message.replace("GraphQL error:", "") });
         console.log("there was an error", err);
         return;
       }
