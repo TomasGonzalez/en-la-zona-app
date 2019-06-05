@@ -14,9 +14,9 @@ const StyledCarousel = styled(Carousel)`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 95vh;
+  height: 80vh;
   overflow: hidden;
-  background-color: rgba(30, 30, 30, 0.06);
+  background-color: rgb(200, 200, 200);
 `;
 
 const StyledImage = styled.img`
@@ -33,9 +33,10 @@ const StyledDiv = styled.div`
 `;
 
 const MainContainer = styled.div`
-  background-color: rgba(30, 30, 30, 0.1);
+  background-color: rgb(200, 200, 200);
   padding: 0px;
   margin: 0px;
+  height: 96vh;
 `;
 
 function OnBoarding() {
