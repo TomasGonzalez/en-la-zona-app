@@ -5,6 +5,7 @@ import styled from "styled-components";
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 import { compose } from "redux";
+import { Link } from "react-router-dom";
 
 const MainContainer = styled.div`
   display: flex;
@@ -159,6 +160,9 @@ class SignUp extends Component {
           <LoginButton onClick={this.handleSubmit}>
             <LoginButtonText>Registrarse</LoginButtonText>
           </LoginButton>
+          <Link to="/Login" style={{ marginTop: 30 }}>
+            Hacer Login
+          </Link>
           <div style={{ color: "red", fontWeight: "bold", margintop: 20 }}>
             {this.state.error && this.state.error}
           </div>
