@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import { Menu, Button, Slider } from "antd";
 import "antd/dist/antd.css";
 import styled from "styled-components";
-import Map, { GoogleApiWrapper, Circle } from "google-maps-react";
+import Map, { GoogleApiWrapper } from "google-maps-react";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 
@@ -65,7 +65,7 @@ class AppMenu extends PureComponent {
     open: false,
     dropdownOpen: false,
     selectedCategory: "",
-    mileRange: [0, 50]
+    mileRange: 50
   };
 
   onSelectCategory = val => {
@@ -83,6 +83,8 @@ class AppMenu extends PureComponent {
   };
 
   handleMileRange = value => {
+    console.log(value);
+
     this.setState({ mileRange: value });
     localStorage.setItem("mileRange", JSON.stringify(value));
   };
@@ -125,10 +127,9 @@ class AppMenu extends PureComponent {
         <Location>
           <p style={{ color: "#EE993B", paddingLeft: 20 }}> Location </p>
           <Map
-            yesIWantToUseGoogleMapApiInternals
             onGoogleApiLoaded={() => console.log("loaded?")}
             google={this.props.google}
-            zoom={-this.state.mileRange[1] / 10 + 20}
+            zoom={-this.state.mileRange / 10 + 20}
             style={{
               width: 300,
               height: 250
@@ -142,7 +143,6 @@ class AppMenu extends PureComponent {
         <MileRange>
           <p style={{ color: "#EE993B" }}> Rango de millas </p>
           <Slider
-            range
             defaultValue={this.state.mileRange}
             onChange={this.handleMileRange}
           />

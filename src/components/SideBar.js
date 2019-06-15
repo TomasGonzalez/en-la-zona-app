@@ -12,6 +12,10 @@ import MdPerson from "react-ionicons/lib/MdPerson";
 import Back from "react-ionicons/lib/IosArrowRoundBack";
 import { withRouter } from "react-router-dom";
 
+import gql from "graphql-tag";
+import { graphql } from "react-apollo";
+import { compose } from "redux";
+
 import { Button } from "antd";
 import { Link } from "react-router-dom";
 
@@ -56,6 +60,10 @@ const ButtonText = styled.p`
   color: #707070;
 `;
 
+const Image = styled.img`
+  border-radius: 50px;
+  object-fit: cover;
+`;
 class SideBar extends PureComponent {
   handleLogout = () => {
     if (localStorage.getItem("user")) {
@@ -65,16 +73,29 @@ class SideBar extends PureComponent {
   };
 
   render() {
+    if (!this.props.data.usuario) {
+      return <div>Cargando...</div>;
+    }
     return (
       <MainContainer>
-        <ProfileImage>
-          <button
-            //onClick={() => (window.location = "/EditarPerfil")}
-            style={{ backgroundColor: "white", borderRadius: 15 }}
-          >
-            <MdPerson fontSize="60px" size={"large"} />
-          </button>
-        </ProfileImage>
+        <div onClick={() => (window.location = "/EditarPerfil")}>
+          {this.props.data.usuario.urlFotoMiniatura ? (
+            <ProfileImage>
+              <Image
+                src={this.props.data.usuario.urlFotoMiniatura}
+                alt="Smiley face"
+                height="90"
+                width="90"
+              />
+            </ProfileImage>
+          ) : (
+            <ProfileImage>
+              <div style={{ backgroundColor: "white", borderRadius: 20 }}>
+                <MdPerson fontSize="90px" size={"large"} />
+              </div>
+            </ProfileImage>
+          )}
+        </div>
         <NavButtonsContainer>
           <NavButtons as={Link} to="/OnBoarding">
             <Button
@@ -143,19 +164,6 @@ class SideBar extends PureComponent {
             </Button>
           </NavButtons> */}
         </NavButtonsContainer>
-        <NavButtons>
-          <Button
-            onClick={() => {
-              this.props.history.goBack(this);
-              this.props.close();
-            }}
-            style={buttonStyle}
-            size={"large"}
-          >
-            <Back fontSize="20px" color="#4E96F6" />
-            <ButtonText> Regresar </ButtonText>
-          </Button>
-        </NavButtons>
         <NavButtons
           as={Link}
           to={"/Login"}
@@ -180,4 +188,39 @@ class SideBar extends PureComponent {
   }
 }
 
-export default withRouter(SideBar);
+const query = gql`
+  query($token: String!) {
+    usuario(token: $token) {
+      idUsuario
+      primerNombre
+      segundoNombre
+      apellido
+      nombreDeUsuario
+      perfilVisitante {
+        idPerfilVisitante
+        urlFotoPerfilVisitante
+        biografiaVisitante
+      }
+      urlFotoMiniatura
+      momentos {
+        edges {
+          node {
+            multimedia
+          }
+        }
+      }
+    }
+  }
+`;
+
+export default compose(
+  graphql(query, {
+    options: props => {
+      return {
+        variables: {
+          token: localStorage.getItem("user")
+        }
+      };
+    }
+  })
+)(SideBar);

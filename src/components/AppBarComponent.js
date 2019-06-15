@@ -2,6 +2,8 @@ import React, { PureComponent } from "react";
 import styled from "styled-components";
 import IosMenuOutline from "react-ionicons/lib/IosMenuOutline";
 import IosOptionsOutline from "react-ionicons/lib/IosOptionsOutline";
+import Back from "react-ionicons/lib/IosArrowRoundBack";
+import { withRouter } from "react-router-dom";
 
 const MainContainer = styled.div`
   display: flex;
@@ -19,7 +21,13 @@ class AppBarComponent extends PureComponent {
   render() {
     return (
       <MainContainer>
-        <IosMenuOutline onClick={() => this.props.handleOpenBar(true)} />
+        <div>
+          <Back onClick={() => this.props.history.goBack(this)} />
+          <IosMenuOutline
+            style={{ marginLeft: 10 }}
+            onClick={() => this.props.handleOpenBar(true)}
+          />
+        </div>
         {dontNav.includes(window.location.pathname) && (
           <IosOptionsOutline
             onClick={() => this.props.handleOpenOptions(true)}
@@ -30,4 +38,4 @@ class AppBarComponent extends PureComponent {
   }
 }
 
-export default AppBarComponent;
+export default withRouter(AppBarComponent);

@@ -42,7 +42,7 @@ const MainContainer = styled.div`
 function OnBoarding() {
   return (
     <MainContainer>
-      <StyledCarousel autoplay={true}>
+      <StyledCarousel>
         <StyledDiv>
           <StyledImage src={b} />
         </StyledDiv>
