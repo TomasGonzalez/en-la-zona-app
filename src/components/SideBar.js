@@ -73,13 +73,11 @@ class SideBar extends PureComponent {
   };
 
   render() {
-    if (!this.props.data.usuario) {
-      return <div>Cargando...</div>;
-    }
     return (
       <MainContainer>
         <div onClick={() => (window.location = "/EditarPerfil")}>
-          {this.props.data.usuario.urlFotoMiniatura ? (
+          {this.props.data.usuario &&
+          this.props.data.usuario.urlFotoMiniatura ? (
             <ProfileImage>
               <Image
                 src={this.props.data.usuario.urlFotoMiniatura}
